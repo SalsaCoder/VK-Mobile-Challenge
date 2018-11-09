@@ -10,4 +10,12 @@ import UIKit
 
 enum Constants {
     static let appId = "6746477"
+    static let apiVersion = "5.5"
+
+    enum URLs {
+        private static let baseUrl = "https://api.vk.com/method"
+
+        static let users = baseUrl + "/users.get"
+        static let newsFeed = baseUrl + "/newsfeed.get"
+    }
 }
