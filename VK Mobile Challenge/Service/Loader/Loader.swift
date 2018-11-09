@@ -8,16 +8,6 @@
 
 import Foundation
 
-enum Result<Value> {
-    case success(Value)
-    case failure(Error)
-}
-
-struct LoaderParams<T: Decodable> {
-    let url: URL
-    let resultType: T.Type
-}
-
 final class Loader {
     let session: URLSession
 

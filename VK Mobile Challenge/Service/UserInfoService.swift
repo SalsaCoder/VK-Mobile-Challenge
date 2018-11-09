@@ -6,7 +6,7 @@
 //  Copyright © 2018 Ilya Glushchuk. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 protocol UserInfoServiceDelegate: class {
     func userInfoService(_ service: UserInfoService, didLoad user: User)

@@ -8,10 +8,6 @@
 
 import UIKit
 
-struct APIResponse<T: Decodable>: Decodable {
-    let response: T
-}
-
 struct User: Decodable {
     let id: Int
     let firstName: String
