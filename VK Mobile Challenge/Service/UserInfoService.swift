@@ -11,7 +11,6 @@ import Foundation
 protocol UserInfoServiceDelegate: class {
     func userInfoService(_ service: UserInfoService, didLoad user: User)
     func userInfoService(_ service: UserInfoService, didFailWith error: Error)
-
 }
 
 final class UserInfoService {
