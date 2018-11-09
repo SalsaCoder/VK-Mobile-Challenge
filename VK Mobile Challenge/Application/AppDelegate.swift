@@ -15,20 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        VKSdk.initialize(withAppId: "")?.register(self)
+        VKSdk.initialize(withAppId: Constants.appId)?.register(self)
 
-        let scope = ["friends", "email"]
-
-        VKSdk.wakeUpSession(scope) { (state, error) in
-            if state == .authorized {
-
-            }
+        VKSdk.wakeUpSession(nil) { (state, error) in
 
             switch state {
             case .authorized:
                 break
             case .initialized:
-                VKSdk.authorize(scope)
+                VKSdk.authorize(nil)
                 break
             default:
                 break
