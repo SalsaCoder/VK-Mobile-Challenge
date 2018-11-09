@@ -50,7 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: VKSdkDelegate {
     func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-
     }
 
     func vkSdkUserAuthorizationFailed() {
