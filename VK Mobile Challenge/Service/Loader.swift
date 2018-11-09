@@ -13,6 +13,11 @@ enum Result<Value> {
     case failure(Error)
 }
 
+struct LoaderParams<T: Decodable> {
+    let url: URL
+    let resultType: T.Type
+}
+
 final class Loader {
     let session: URLSession
 
@@ -20,20 +25,24 @@ final class Loader {
         self.session = session
     }
 
-    func load<T: Decodable>(request: URLRequest, completion: ((Result<T>) -> Void)?) -> URLSessionDataTask {
-        let task = session.dataTask(with: request) { (data, response, error) in
+    func load<T>(params: LoaderParams<T>, completion: ((Result<T>) -> Void)?) -> URLSessionDataTask {
+        let task = session.dataTask(with: params.url) { (data, response, error) in
             if let error = error {
                 completion?(.failure(error))
                 return
             }
 
-            // TODO: проверить коды
+            if let httpResponse = response as? HTTPURLResponse {
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    return
+                }
+            }
 
             if let data = data {
                 let decoder = JSONDecoder()
 
                 do {
-                    let data = try decoder.decode(T.self, from: data)
+                    let data = try decoder.decode(params.resultType, from: data)
                     completion?(.success(data))
                 } catch {
                     completion?(.failure(error))
