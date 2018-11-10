@@ -76,26 +76,11 @@ struct NewsfeedItem: Decodable {
     }
 }
 
-struct FailableDecodable<Base : Decodable> : Decodable {
+// Хак, чтобы не разбирать type из контейнера
+private struct FailableDecodable<Base : Decodable> : Decodable {
     let base: Base?
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.base = try? container.decode(Base.self)
     }
-}
-
-struct Comments: Decodable {
-    let count: Int
-}
-
-struct Likes: Decodable {
-    let count: Int
-}
-
-struct Reposts: Decodable {
-    let count: Int
-}
-
-struct Views: Decodable {
-    let count: Int
 }
