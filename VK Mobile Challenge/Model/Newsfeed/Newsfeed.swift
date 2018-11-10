@@ -10,11 +10,12 @@ import Foundation
 
 struct Newsfeed: Decodable {
     let items: [NewsfeedItem]
-
+    let profiles: [User]
     let nextFrom: String
 
     enum CodingKeys: String, CodingKey {
         case items
+        case profiles
         case nextFrom = "next_from"
     }
 }
@@ -29,9 +30,11 @@ struct NewsfeedItem: Decodable {
         case reposts
         case views
         case  attachments
+        case sourceId = "source_id"
     }
 
     let date: TimeInterval
+    let sourceId: Int
     let text: String
     let type: String
     let comments: Comments
@@ -41,6 +44,7 @@ struct NewsfeedItem: Decodable {
     let attachments: [Attachment]?
 
     init(date: TimeInterval,
+         sourceId: Int,
          text: String,
          type: String,
          comments: Comments,
@@ -49,6 +53,7 @@ struct NewsfeedItem: Decodable {
          views: Views?,
          attachments: [Attachment]?) {
         self.date = date
+        self.sourceId = sourceId
         self.text = text
         self.type = type
         self.comments = comments
@@ -62,6 +67,7 @@ struct NewsfeedItem: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         let date = try container.decode(TimeInterval.self, forKey: .date)
+        let sourceId = try container.decode(Int.self, forKey: .sourceId)
         let text = try container.decode(String.self, forKey: .text)
         let type = try container.decode(String.self, forKey: .type)
 
@@ -72,7 +78,15 @@ struct NewsfeedItem: Decodable {
 
         let attachments = try container.decodeIfPresent([FailableDecodable<PhotoAttachment>].self, forKey: .attachments)?.compactMap({ $0.base })
 
-        self.init(date: date, text: text, type: type, comments: comments, likes: likes, reposts: reposts, views: views, attachments: attachments)
+        self.init(date: date,
+                  sourceId: sourceId,
+                  text: text,
+                  type: type,
+                  comments: comments,
+                  likes: likes,
+                  reposts: reposts,
+                  views: views,
+                  attachments: attachments)
     }
 }
 
