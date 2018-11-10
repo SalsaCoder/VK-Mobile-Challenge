@@ -1,5 +1,5 @@
 //
-//  Attatchment.swift
+//  Attachment.swift
 //  VK Mobile Challenge
 //
 //  Created by Ilya Gluschuk on 10/11/2018.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Attatchment: Decodable {
+protocol Attachment: Decodable {
     var type: String { get }
 }

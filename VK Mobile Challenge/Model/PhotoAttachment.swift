@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PhotoAttachment: Attatchment {
+struct PhotoAttachment: Attachment {
     let type: String
     let photo: Photo
 }

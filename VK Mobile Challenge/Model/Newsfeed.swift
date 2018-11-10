@@ -24,26 +24,30 @@ struct NewsfeedItem: Decodable {
         case date
         case text
         case type
-
         case comments
         case likes
         case reposts
         case views
-//        case  attachments
+        case  attachments
     }
 
     let date: TimeInterval
     let text: String
     let type: String
-
     let comments: Comments
     let likes: Likes
     let reposts: Reposts
-    let views: Views
+    let views: Views?
+    let attachments: [Attachment]?
 
-//    let attachments: [Attatchment]
-
-    init(date: TimeInterval, text: String, type: String, comments: Comments, likes: Likes, reposts: Reposts, views: Views) {
+    init(date: TimeInterval,
+         text: String,
+         type: String,
+         comments: Comments,
+         likes: Likes,
+         reposts: Reposts,
+         views: Views?,
+         attachments: [Attachment]?) {
         self.date = date
         self.text = text
         self.type = type
@@ -51,6 +55,7 @@ struct NewsfeedItem: Decodable {
         self.likes = likes
         self.reposts = reposts
         self.views = views
+        self.attachments = attachments
     }
 
     init(from decoder: Decoder) throws {
@@ -63,9 +68,19 @@ struct NewsfeedItem: Decodable {
         let comments = try container.decode(Comments.self, forKey: .comments)
         let likes = try container.decode(Likes.self, forKey: .likes)
         let reposts = try container.decode(Reposts.self, forKey: .reposts)
-        let views = try container.decode(Views.self, forKey: .views)
+        let views = try container.decodeIfPresent(Views.self, forKey: .views)
 
-        self.init(date: date, text: text, type: type, comments: comments, likes: likes, reposts: reposts, views: views)
+        let attachments = try container.decodeIfPresent([FailableDecodable<PhotoAttachment>].self, forKey: .attachments)?.compactMap({ $0.base })
+
+        self.init(date: date, text: text, type: type, comments: comments, likes: likes, reposts: reposts, views: views, attachments: attachments)
+    }
+}
+
+struct FailableDecodable<Base : Decodable> : Decodable {
+    let base: Base?
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.base = try? container.decode(Base.self)
     }
 }
 
