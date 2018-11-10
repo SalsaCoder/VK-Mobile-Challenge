@@ -32,7 +32,7 @@ final class NewsfeedViewModelBuilder {
                                               authorImageUrl: user.photo,
                                               text: item.text,
                                               photoUrls: [],
-                                              likeCount: item.likes.count,
+                                              likeCounts: item.likes.count,
                                               commentsCount: item.comments.count,
                                               repostCount: item.reposts.count,
                                               viewsCount: item.views?.count ?? 0)

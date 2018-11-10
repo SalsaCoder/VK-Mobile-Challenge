@@ -14,7 +14,7 @@ struct NewsfeedViewModel {
     let authorImageUrl: URL
     let text: String
     let photoUrls: [URL]
-    let likeCount: Int
+    let likeCounts: Int
     let commentsCount: Int
     let repostCount: Int
     let viewsCount: Int

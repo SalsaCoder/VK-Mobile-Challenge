@@ -20,6 +20,12 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var containerView: UIView!
 
+    @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var repostLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
+    @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var counterSeparator: UIView!
+
     @IBAction func tapShowMoreButton(_ sender: UIButton) {
     }
 
@@ -37,6 +43,11 @@ final class NewsfeedTableViewCell: UITableViewCell {
         nameLabel.text = viewModel.name
         dateLabel.text = viewModel.date
         textView.text = viewModel.text
+
+        viewsLabel.text = viewModel.viewsCount > 0 ? "\(viewModel.viewsCount)" : nil
+        repostLabel.text = viewModel.repostCount > 0 ? "\(viewModel.repostCount)" : nil
+        commentsLabel.text = viewModel.commentsCount > 0 ? "\(viewModel.commentsCount)" : nil
+        likesLabel.text = viewModel.likeCounts > 0 ? "\(viewModel.likeCounts)" : nil
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
     }
