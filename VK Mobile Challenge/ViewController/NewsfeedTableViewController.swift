@@ -49,6 +49,7 @@ extension NewsfeedTableViewController: NewsfeedServiceDelegate {
     }
 
     func newsfeedService(_ service: NewsfeedService, didFailWith error: Error) {
+        print(error)
     }
 }
 

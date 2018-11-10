@@ -31,6 +31,7 @@ struct NewsfeedItem: Decodable {
         case views
         case  attachments
         case sourceId = "source_id"
+        case copyHistory = "copy_history"
     }
 
     let date: TimeInterval
@@ -42,6 +43,7 @@ struct NewsfeedItem: Decodable {
     let reposts: Reposts
     let views: Views?
     let attachments: [Attachment]?
+    let isRepost: Bool
 
     init(date: TimeInterval,
          sourceId: Int,
@@ -51,7 +53,8 @@ struct NewsfeedItem: Decodable {
          likes: Likes,
          reposts: Reposts,
          views: Views?,
-         attachments: [Attachment]?) {
+         attachments: [Attachment]?,
+         isRepost: Bool) {
         self.date = date
         self.sourceId = sourceId
         self.text = text
@@ -61,6 +64,7 @@ struct NewsfeedItem: Decodable {
         self.reposts = reposts
         self.views = views
         self.attachments = attachments
+        self.isRepost = isRepost
     }
 
     init(from decoder: Decoder) throws {
@@ -76,6 +80,8 @@ struct NewsfeedItem: Decodable {
         let reposts = try container.decode(Reposts.self, forKey: .reposts)
         let views = try container.decodeIfPresent(Views.self, forKey: .views)
 
+        let isRepost = container.contains(.copyHistory)
+
         let attachments = try container.decodeIfPresent([FailableDecodable<PhotoAttachment>].self, forKey: .attachments)?.compactMap({ $0.base })
 
         self.init(date: date,
@@ -86,7 +92,8 @@ struct NewsfeedItem: Decodable {
                   likes: likes,
                   reposts: reposts,
                   views: views,
-                  attachments: attachments)
+                  attachments: attachments,
+                  isRepost: isRepost)
     }
 }
 

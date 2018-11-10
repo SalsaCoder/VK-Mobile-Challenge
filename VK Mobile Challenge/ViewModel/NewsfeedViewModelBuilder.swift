@@ -19,7 +19,9 @@ final class NewsfeedViewModelBuilder {
     func buildViewModels(from newsFeed: Newsfeed) -> [NewsfeedViewModel] {
         var viewModels = [NewsfeedViewModel]()
 
-        for item in newsFeed.items {
+        let originalItems = newsFeed.items.filter({ $0.isRepost == false })
+
+        for item in originalItems {
             guard let user = newsFeed.profiles.first(where: { $0.id == item.sourceId }) else {
                 continue
             }
