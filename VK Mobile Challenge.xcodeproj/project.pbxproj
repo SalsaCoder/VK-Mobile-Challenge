@@ -141,9 +141,8 @@
 		458F45922196CBF00063E93A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				45FC270A21969ABD00B7D58C /* Cell */,
+				458F459A2196DC510063E93A /* TableView */,
 				45FC27082196931C00B7D58C /* NewsfeedTableViewController.swift */,
-				458F45932196CC0D0063E93A /* NewsfeedTableViewManager.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -154,6 +153,15 @@
 				458F45982196CEA00063E93A /* UIImageViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		458F459A2196DC510063E93A /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				45FC270A21969ABD00B7D58C /* Cell */,
+				458F45932196CC0D0063E93A /* NewsfeedTableViewManager.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 		45D789C4219589ED00908708 = {

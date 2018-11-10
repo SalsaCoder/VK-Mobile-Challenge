@@ -19,12 +19,16 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var containerView: UIView!
 
     @IBAction func tapShowMoreButton(_ sender: UIButton) {
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        containerView.layer.cornerRadius = 10
+        containerView.layer.masksToBounds = true
 
         profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
         profileImageView.layer.masksToBounds = true

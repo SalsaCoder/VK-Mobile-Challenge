@@ -25,6 +25,17 @@ final class NewsfeedTableViewController: UITableViewController {
         newsfeedService.delegate = self
 
         authService.requestAuthorization()
+
+        setupBackgroundView()
+    }
+
+    private func setupBackgroundView() {
+        let layer = Constants.Colors.grayGradientLayer
+        layer.frame = tableView.bounds
+
+        let backgroundView = UIView(frame: tableView.bounds)
+        backgroundView.layer.insertSublayer(layer, at: 0)
+        tableView.backgroundView = backgroundView
     }
 }
 
