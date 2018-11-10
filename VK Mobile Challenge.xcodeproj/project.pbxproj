@@ -28,6 +28,8 @@
 		45D789DB219589EE00908708 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D789D9219589EE00908708 /* LaunchScreen.storyboard */; };
 		45FC27092196931C00B7D58C /* NewsfeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC27082196931C00B7D58C /* NewsfeedTableViewController.swift */; };
 		45FC270C21969AD400B7D58C /* NewsfeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC270B21969AD400B7D58C /* NewsfeedTableViewCell.swift */; };
+		45FC270F2196AE2A00B7D58C /* NewsfeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC270E2196AE2A00B7D58C /* NewsfeedViewModel.swift */; };
+		45FC27112196AF6200B7D58C /* NewsfeedViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC27102196AF6200B7D58C /* NewsfeedViewModelBuilder.swift */; };
 		EC4D911080E9CA6C9B4EA46C /* Pods_VK_Mobile_Challenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552F27BD8A65BB1BACCAC746 /* Pods_VK_Mobile_Challenge.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,8 @@
 		45D789DC219589EE00908708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45FC27082196931C00B7D58C /* NewsfeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedTableViewController.swift; sourceTree = "<group>"; };
 		45FC270B21969AD400B7D58C /* NewsfeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedTableViewCell.swift; sourceTree = "<group>"; };
+		45FC270E2196AE2A00B7D58C /* NewsfeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewModel.swift; sourceTree = "<group>"; };
+		45FC27102196AF6200B7D58C /* NewsfeedViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedViewModelBuilder.swift; sourceTree = "<group>"; };
 		552F27BD8A65BB1BACCAC746 /* Pods_VK_Mobile_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Mobile_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -145,6 +149,7 @@
 		45D789CF219589EE00908708 /* VK Mobile Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				45FC270D2196AE0A00B7D58C /* ViewModel */,
 				45FC270A21969ABD00B7D58C /* Cell */,
 				45041F0021959A7500EECD8D /* Model */,
 				45041EFA2195966700EECD8D /* Service */,
@@ -165,6 +170,15 @@
 				45FC270B21969AD400B7D58C /* NewsfeedTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		45FC270D2196AE0A00B7D58C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				45FC270E2196AE2A00B7D58C /* NewsfeedViewModel.swift */,
+				45FC27102196AF6200B7D58C /* NewsfeedViewModelBuilder.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D38D8C8EEEB9D7D4D7E197B6 /* Frameworks */ = {
@@ -305,12 +319,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				45041F082195C2E100EECD8D /* APIResponse.swift in Sources */,
+				45FC27112196AF6200B7D58C /* NewsfeedViewModelBuilder.swift in Sources */,
 				45041F062195BD1300EECD8D /* UserInfoService.swift in Sources */,
 				45FC270C21969AD400B7D58C /* NewsfeedTableViewCell.swift in Sources */,
 				45C86B082195CC5500B50663 /* NewsfeedService.swift in Sources */,
 				45148F01219690260019BBC7 /* Comments.swift in Sources */,
 				45148F03219690400019BBC7 /* Likes.swift in Sources */,
 				450934F62196804D00585C4E /* PhotoAttachment.swift in Sources */,
+				45FC270F2196AE2A00B7D58C /* NewsfeedViewModel.swift in Sources */,
 				45041F0421959F4700EECD8D /* Constants.swift in Sources */,
 				45041F0221959A8100EECD8D /* User.swift in Sources */,
 				45148F05219690550019BBC7 /* Reposts.swift in Sources */,
