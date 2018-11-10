@@ -11,50 +11,33 @@ import UIKit
 final class NewsfeedTableViewController: UITableViewController {
     let viewModelBuilder = NewsfeedViewModelBuilder()
     let newsfeedService = NewsfeedService(loader: Loader(session: URLSession.shared))
-
-    var viewModels = [NewsfeedViewModel]()
+    let tableViewManager = NewsfeedTableViewManager()
 
     let authService = AuthService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = tableViewManager
+        tableView.dataSource = tableViewManager
+
         authService.delegate = self
         newsfeedService.delegate = self
 
         authService.requestAuthorization()
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModels.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedTableViewCell.reuseIdentifier, for: indexPath)
-
-        if let cell = cell as? NewsfeedTableViewCell {
-            let viewModel = viewModels[indexPath.row]
-            cell.configure(with: viewModel)
-        }
-
-        return cell
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
 }
 
 extension NewsfeedTableViewController: NewsfeedServiceDelegate {
     func newsfeedService(_ service: NewsfeedService, didLoad newsfeed: Newsfeed) {
-        viewModels = viewModelBuilder.buildViewModels(from: newsfeed)
+        tableViewManager.viewModels = viewModelBuilder.buildViewModels(from: newsfeed)
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
 
     func newsfeedService(_ service: NewsfeedService, didFailWith error: Error) {
-
     }
 }
 
