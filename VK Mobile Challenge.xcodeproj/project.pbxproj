@@ -23,10 +23,11 @@
 		45148F07219690710019BBC7 /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45148F06219690710019BBC7 /* Views.swift */; };
 		45C86B082195CC5500B50663 /* NewsfeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C86B072195CC5500B50663 /* NewsfeedService.swift */; };
 		45D789D1219589EE00908708 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D789D0219589EE00908708 /* AppDelegate.swift */; };
-		45D789D3219589EE00908708 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D789D2219589EE00908708 /* ViewController.swift */; };
 		45D789D6219589EE00908708 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D789D4219589EE00908708 /* Main.storyboard */; };
 		45D789D8219589EE00908708 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45D789D7219589EE00908708 /* Assets.xcassets */; };
 		45D789DB219589EE00908708 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D789D9219589EE00908708 /* LaunchScreen.storyboard */; };
+		45FC27092196931C00B7D58C /* NewsfeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC27082196931C00B7D58C /* NewsfeedTableViewController.swift */; };
+		45FC270C21969AD400B7D58C /* NewsfeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FC270B21969AD400B7D58C /* NewsfeedTableViewCell.swift */; };
 		EC4D911080E9CA6C9B4EA46C /* Pods_VK_Mobile_Challenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 552F27BD8A65BB1BACCAC746 /* Pods_VK_Mobile_Challenge.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,11 +51,12 @@
 		45C86B072195CC5500B50663 /* NewsfeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedService.swift; sourceTree = "<group>"; };
 		45D789CD219589EE00908708 /* VK Mobile Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK Mobile Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45D789D0219589EE00908708 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		45D789D2219589EE00908708 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		45D789D5219589EE00908708 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45D789D7219589EE00908708 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45D789DA219589EE00908708 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45D789DC219589EE00908708 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45FC27082196931C00B7D58C /* NewsfeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedTableViewController.swift; sourceTree = "<group>"; };
+		45FC270B21969AD400B7D58C /* NewsfeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedTableViewCell.swift; sourceTree = "<group>"; };
 		552F27BD8A65BB1BACCAC746 /* Pods_VK_Mobile_Challenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Mobile_Challenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,17 +145,26 @@
 		45D789CF219589EE00908708 /* VK Mobile Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				45FC270A21969ABD00B7D58C /* Cell */,
 				45041F0021959A7500EECD8D /* Model */,
 				45041EFA2195966700EECD8D /* Service */,
 				45041EF92195965C00EECD8D /* Application */,
-				45D789D2219589EE00908708 /* ViewController.swift */,
 				45D789D4219589EE00908708 /* Main.storyboard */,
 				45D789D7219589EE00908708 /* Assets.xcassets */,
 				45D789D9219589EE00908708 /* LaunchScreen.storyboard */,
 				45D789DC219589EE00908708 /* Info.plist */,
 				45041F0321959F4700EECD8D /* Constants.swift */,
+				45FC27082196931C00B7D58C /* NewsfeedTableViewController.swift */,
 			);
 			path = "VK Mobile Challenge";
+			sourceTree = "<group>";
+		};
+		45FC270A21969ABD00B7D58C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				45FC270B21969AD400B7D58C /* NewsfeedTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		D38D8C8EEEB9D7D4D7E197B6 /* Frameworks */ = {
@@ -295,6 +306,7 @@
 			files = (
 				45041F082195C2E100EECD8D /* APIResponse.swift in Sources */,
 				45041F062195BD1300EECD8D /* UserInfoService.swift in Sources */,
+				45FC270C21969AD400B7D58C /* NewsfeedTableViewCell.swift in Sources */,
 				45C86B082195CC5500B50663 /* NewsfeedService.swift in Sources */,
 				45148F01219690260019BBC7 /* Comments.swift in Sources */,
 				45148F03219690400019BBC7 /* Likes.swift in Sources */,
@@ -302,9 +314,9 @@
 				45041F0421959F4700EECD8D /* Constants.swift in Sources */,
 				45041F0221959A8100EECD8D /* User.swift in Sources */,
 				45148F05219690550019BBC7 /* Reposts.swift in Sources */,
-				45D789D3219589EE00908708 /* ViewController.swift in Sources */,
 				45D789D1219589EE00908708 /* AppDelegate.swift in Sources */,
 				45041F112195C6C800EECD8D /* Newsfeed.swift in Sources */,
+				45FC27092196931C00B7D58C /* NewsfeedTableViewController.swift in Sources */,
 				45148F07219690710019BBC7 /* Views.swift in Sources */,
 				45041F0A2195C2F400EECD8D /* Result.swift in Sources */,
 				45041EFC2195968900EECD8D /* Loader.swift in Sources */,
