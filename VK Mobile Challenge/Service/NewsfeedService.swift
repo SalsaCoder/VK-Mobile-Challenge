@@ -59,6 +59,6 @@ final class NewsfeedService {
         return [URLQueryItem(name: "filters", value: "post"),
                 URLQueryItem(name: "access_token", value: accessToken),
                 URLQueryItem(name: "v", value: Constants.apiVersion),
-                URLQueryItem(name: "count", value: "10")]
+                URLQueryItem(name: "count", value: "20")]
     }
 }

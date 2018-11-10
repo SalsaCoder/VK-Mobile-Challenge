@@ -9,9 +9,17 @@
 import UIKit
 
 extension UIImageView {
-    func setImage(with url: URL) -> URLSessionDataTask {
+    func setImage(with url: URL) -> URLSessionDataTask? {
         let session = URLSession.shared
-        let task = session.dataTask(with: url) { [weak self] (data, _, error) in
+        let cache = URLCache.shared
+        let request = URLRequest(url: url)
+
+        if let response = cache.cachedResponse(for: request) {
+            image = UIImage(data: response.data)
+            return nil
+        }
+
+        let task = session.dataTask(with: request) { [weak self] (data, _, error) in
             guard let strongSelf = self else {
                 return
             }
