@@ -6,7 +6,7 @@
 //  Copyright © 2018 Ilya Glushchuk. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct User: Decodable {
     let id: Int
