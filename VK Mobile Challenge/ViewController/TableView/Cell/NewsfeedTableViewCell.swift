@@ -32,6 +32,9 @@ final class NewsfeedTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+
         containerView.layer.cornerRadius = 10
         containerView.layer.masksToBounds = true
 
