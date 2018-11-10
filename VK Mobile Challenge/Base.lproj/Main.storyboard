@@ -76,6 +76,13 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isx-PT-1vE">
+                                                    <rect key="frame" x="12" y="213" width="161" height="30"/>
+                                                    <state key="normal" title="Показать полностью..."/>
+                                                    <connections>
+                                                        <action selector="tapShowMoreButton:" destination="ZaA-1V-bTF" eventType="touchUpInside" id="YaQ-2t-vrG"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -84,11 +91,13 @@
                                                 <constraint firstItem="9hd-wh-jN8" firstAttribute="top" secondItem="yb8-V4-IIW" secondAttribute="top" constant="14" id="CCq-MA-DmV"/>
                                                 <constraint firstItem="9hd-wh-jN8" firstAttribute="leading" secondItem="9oV-VO-h56" secondAttribute="trailing" constant="10" id="J4K-DR-53n"/>
                                                 <constraint firstItem="9oV-VO-h56" firstAttribute="leading" secondItem="yb8-V4-IIW" secondAttribute="leading" constant="12" id="M44-bj-9gn"/>
+                                                <constraint firstItem="Isx-PT-1vE" firstAttribute="top" secondItem="OhV-Mq-slQ" secondAttribute="bottom" constant="5" id="RDV-MP-aGr"/>
                                                 <constraint firstItem="yBb-hC-cbs" firstAttribute="leading" secondItem="9hd-wh-jN8" secondAttribute="leading" id="RYO-I3-20m"/>
                                                 <constraint firstItem="yBb-hC-cbs" firstAttribute="top" secondItem="9hd-wh-jN8" secondAttribute="bottom" constant="1" id="gl9-uR-wkT"/>
                                                 <constraint firstItem="9oV-VO-h56" firstAttribute="top" secondItem="yb8-V4-IIW" secondAttribute="top" constant="12" id="psT-uw-ayq"/>
                                                 <constraint firstItem="OhV-Mq-slQ" firstAttribute="top" secondItem="9oV-VO-h56" secondAttribute="bottom" constant="10" id="qWE-3Q-0bG"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9hd-wh-jN8" secondAttribute="trailing" constant="20" symbolic="YES" id="qhS-ve-gFq"/>
+                                                <constraint firstItem="Isx-PT-1vE" firstAttribute="leading" secondItem="OhV-Mq-slQ" secondAttribute="leading" id="vWE-pb-oh4"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -100,6 +109,14 @@
                                         <constraint firstAttribute="trailing" secondItem="yb8-V4-IIW" secondAttribute="trailing" constant="8" id="wpf-zL-vdF"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="dateLabel" destination="yBb-hC-cbs" id="mYY-nV-9gG"/>
+                                    <outlet property="nameLabel" destination="9hd-wh-jN8" id="tKl-y3-Mge"/>
+                                    <outlet property="profileImageView" destination="9oV-VO-h56" id="dj3-Vs-SKG"/>
+                                    <outlet property="showMoreButton" destination="Isx-PT-1vE" id="0ro-rN-kTl"/>
+                                    <outlet property="textView" destination="OhV-Mq-slQ" id="k3x-e9-aNY"/>
+                                    <outlet property="textViewHeightConstraint" destination="UV9-09-piL" id="eyE-Q5-aUn"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
