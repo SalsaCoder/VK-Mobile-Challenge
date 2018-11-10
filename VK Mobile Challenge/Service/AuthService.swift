@@ -14,12 +14,20 @@ protocol AuthServiceDelegate: class {
     func authServiceDidFail(_ authService: AuthService)
 }
 
+private let scope = ["wall", "friends"]
+
 final class AuthService: NSObject {
     var token: Token?
     weak var delegate: AuthServiceDelegate?
 
+    override init() {
+        super.init()
+
+        VKSdk.initialize(withAppId: Constants.appId)?.register(self)
+    }
+
     func requestAuthorization() {
-        VKSdk.wakeUpSession(nil) { [weak self] (state, error) in
+        VKSdk.wakeUpSession(scope) { [weak self] (state, error) in
             guard let strongSelf = self else {
                 return
             }
@@ -33,9 +41,10 @@ final class AuthService: NSObject {
 
                 break
             case .initialized:
-                VKSdk.authorize(nil)
+                VKSdk.authorize(scope)
                 break
             default:
+                strongSelf.delegate?.authServiceDidFail(strongSelf)
                 break
             }
         }
@@ -51,5 +60,6 @@ extension AuthService: VKSdkDelegate {
     }
 
     func vkSdkUserAuthorizationFailed() {
+        delegate?.authServiceDidFail(self)
     }
 }

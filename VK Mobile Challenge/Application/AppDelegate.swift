@@ -15,21 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        VKSdk.initialize(withAppId: Constants.appId)?.register(self)
-
-        VKSdk.wakeUpSession(nil) { (state, error) in
-
-            switch state {
-            case .authorized:
-                break
-            case .initialized:
-                VKSdk.authorize(nil)
-                break
-            default:
-                break
-            }
-        }
-
         return true
     }
 
@@ -39,13 +24,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         return true
-    }
-}
-
-extension AppDelegate: VKSdkDelegate {
-    func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-    }
-
-    func vkSdkUserAuthorizationFailed() {
     }
 }
