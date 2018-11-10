@@ -11,6 +11,8 @@ import UIKit
 final class NewsfeedTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
+    var task: URLSessionDataTask?
+
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -21,10 +23,19 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBAction func tapShowMoreButton(_ sender: UIButton) {
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
+        profileImageView.layer.masksToBounds = true
+    }
+
     func configure(with viewModel: NewsfeedViewModel) {
         nameLabel.text = viewModel.name
         dateLabel.text = viewModel.date
         textView.text = viewModel.text
+
+        task = profileImageView.setImage(with: viewModel.authorImageUrl)
 
         let sizeThatFitsTextView = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat(MAXFLOAT)))
         let heightOfText = sizeThatFitsTextView.height
@@ -33,6 +44,9 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+
+        task?.cancel()
+        task = nil
         profileImageView.image = nil
     }
 }
