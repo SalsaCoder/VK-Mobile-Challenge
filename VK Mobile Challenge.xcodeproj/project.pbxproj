@@ -91,14 +91,8 @@
 		45041F0021959A7500EECD8D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				45148F082196910D0019BBC7 /* Newsfeed */,
 				45041F0121959A8100EECD8D /* User.swift */,
-				45041F102195C6C800EECD8D /* Newsfeed.swift */,
-				450934F52196804D00585C4E /* PhotoAttachment.swift */,
-				450934F72196806200585C4E /* Attachment.swift */,
-				45148F00219690260019BBC7 /* Comments.swift */,
-				45148F02219690400019BBC7 /* Likes.swift */,
-				45148F04219690550019BBC7 /* Reposts.swift */,
-				45148F06219690710019BBC7 /* Views.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -112,6 +106,20 @@
 				45041F0B2195C31600EECD8D /* LoaderParams.swift */,
 			);
 			path = Loader;
+			sourceTree = "<group>";
+		};
+		45148F082196910D0019BBC7 /* Newsfeed */ = {
+			isa = PBXGroup;
+			children = (
+				45041F102195C6C800EECD8D /* Newsfeed.swift */,
+				450934F52196804D00585C4E /* PhotoAttachment.swift */,
+				450934F72196806200585C4E /* Attachment.swift */,
+				45148F00219690260019BBC7 /* Comments.swift */,
+				45148F02219690400019BBC7 /* Likes.swift */,
+				45148F04219690550019BBC7 /* Reposts.swift */,
+				45148F06219690710019BBC7 /* Views.swift */,
+			);
+			path = Newsfeed;
 			sourceTree = "<group>";
 		};
 		45D789C4219589ED00908708 = {
