@@ -22,8 +22,9 @@ struct Newsfeed: Decodable {
 }
 
 struct NewsfeedItem: Decodable {
-    let data: TimeInterval
+    let date: TimeInterval
     let text: String
+    let type: String
 
     let comments: Comments
     let likes: Likes

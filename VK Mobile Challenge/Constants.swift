@@ -16,6 +16,6 @@ enum Constants {
         private static let baseUrl = "https://api.vk.com/method"
 
         static let users = baseUrl + "/users.get"
-        static let newsFeed = baseUrl + "/newsfeed.get"
+        static let newsfeed = baseUrl + "/newsfeed.get"
     }
 }
