@@ -10,7 +10,7 @@ import UIKit
 
 enum Constants {
     static let appId = "6746477"
-    static let apiVersion = "5.5"
+    static let apiVersion = "5.87"
 
     enum URLs {
         private static let baseUrl = "https://api.vk.com/method"

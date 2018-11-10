@@ -11,12 +11,10 @@ import UIKit
 struct Newsfeed: Decodable {
     let items: [NewsfeedItem]
 
-    let newOffset: Int
-    let nextFrom: Int
+    let nextFrom: String
 
     enum CodingKeys: String, CodingKey {
         case items
-        case newOffset = "new_offset"
         case nextFrom = "next_from"
     }
 }
