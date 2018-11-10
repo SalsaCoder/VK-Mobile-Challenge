@@ -18,7 +18,6 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var showMoreButton: UIButton!
-    @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerView: UIView!
 
     @IBAction func tapShowMoreButton(_ sender: UIButton) {
@@ -40,10 +39,6 @@ final class NewsfeedTableViewCell: UITableViewCell {
         textView.text = viewModel.text
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
-
-        let sizeThatFitsTextView = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat(MAXFLOAT)))
-        let heightOfText = sizeThatFitsTextView.height
-        textViewHeightConstraint.constant = heightOfText
     }
 
     override func prepareForReuse() {

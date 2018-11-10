@@ -67,17 +67,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhV-Mq-slQ">
-                                                    <rect key="frame" x="12" y="58" width="335" height="150"/>
+                                                    <rect key="frame" x="12" y="58" width="335" height="322"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="150" id="UV9-09-piL"/>
-                                                    </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isx-PT-1vE">
-                                                    <rect key="frame" x="12" y="213" width="161" height="30"/>
+                                                    <rect key="frame" x="12" y="385" width="161" height="30"/>
                                                     <state key="normal" title="Показать полностью..."/>
                                                     <connections>
                                                         <action selector="tapShowMoreButton:" destination="ZaA-1V-bTF" eventType="touchUpInside" id="YaQ-2t-vrG"/>
@@ -99,6 +96,7 @@
                                                 <constraint firstItem="9oV-VO-h56" firstAttribute="top" secondItem="yb8-V4-IIW" secondAttribute="top" constant="12" id="psT-uw-ayq"/>
                                                 <constraint firstItem="OhV-Mq-slQ" firstAttribute="top" secondItem="9oV-VO-h56" secondAttribute="bottom" constant="10" id="qWE-3Q-0bG"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9hd-wh-jN8" secondAttribute="trailing" constant="20" symbolic="YES" id="qhS-ve-gFq"/>
+                                                <constraint firstAttribute="bottom" secondItem="OhV-Mq-slQ" secondAttribute="bottom" constant="50" id="r5D-OO-zFv"/>
                                                 <constraint firstItem="Isx-PT-1vE" firstAttribute="leading" secondItem="OhV-Mq-slQ" secondAttribute="leading" id="vWE-pb-oh4"/>
                                             </constraints>
                                         </view>
@@ -118,7 +116,6 @@
                                     <outlet property="profileImageView" destination="9oV-VO-h56" id="dj3-Vs-SKG"/>
                                     <outlet property="showMoreButton" destination="Isx-PT-1vE" id="0ro-rN-kTl"/>
                                     <outlet property="textView" destination="OhV-Mq-slQ" id="k3x-e9-aNY"/>
-                                    <outlet property="textViewHeightConstraint" destination="UV9-09-piL" id="eyE-Q5-aUn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
