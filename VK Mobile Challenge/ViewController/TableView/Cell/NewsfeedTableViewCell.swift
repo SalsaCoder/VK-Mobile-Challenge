@@ -10,7 +10,7 @@ import UIKit
 
 final class NewsfeedTableViewCell: UITableViewCell {
     private static let pageControlHeight: CGFloat = 39
-    private let maximumNumberOfLines = 6
+    private let maximumNumberOfLines: CGFloat = 6
 
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
@@ -29,7 +29,6 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
 
-
     @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
@@ -43,7 +42,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var textView: UITextView! {
         didSet {
-            textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            textView.textContainerInset = .zero
             textView.textContainer.lineFragmentPadding = 0
         }
     }
@@ -84,8 +83,8 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
         if let lineHeight = textView.font?.lineHeight {
 //             Резервируем строки для кнопки "Показать полностью"
-            textHeightConstraint.constant = lineHeight * CGFloat(maximumNumberOfLines + 2)
-            showMoreButton.isHidden = false
+            textHeightConstraint.constant = lineHeight * (maximumNumberOfLines + 2)
+            showMoreButton.isHidden = true
         }
     }
 
@@ -108,6 +107,19 @@ extension NewsfeedTableViewCell {
         configureCollectionView(with: viewModel.photos)
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
+
+        if let font = textView.font {
+            let textHeight = font.sizeOf(string: viewModel.text,
+                                         constrainedTo: textView.bounds.width).height
+
+            if textHeight < font.lineHeight * maximumNumberOfLines {
+                showMoreButton.isHidden = true
+                textView.textContainerInset = .zero
+            } else {
+                showMoreButton.isHidden = false
+                textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: showMoreButton.bounds.height, right: 0)
+            }
+        }
     }
 
     func configureCollectionView(with photos: [NewsfeedViewModel.PhotoViewModel]) {
@@ -153,5 +165,14 @@ private extension NewsfeedTableViewCell {
     func configureCollectionViewForHorizontal() {
         cvHorizontalAspectRationConstraint.isActive = true
         cvVerticalAspectRatioConstraint.isActive = false
+    }
+}
+
+private extension UIFont {
+    func sizeOf(string: String, constrainedTo width: CGFloat) -> CGSize {
+        return NSString(string: string).boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude),
+                                                     options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                     attributes: [.font: self],
+                                                     context: nil).size
     }
 }
