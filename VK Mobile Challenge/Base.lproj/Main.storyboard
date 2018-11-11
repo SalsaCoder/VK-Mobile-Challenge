@@ -69,6 +69,9 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhV-Mq-slQ">
                                                     <rect key="frame" x="12" y="58" width="335" height="172"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="172" id="hcd-7P-xAo"/>
+                                                    </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -191,6 +194,16 @@
                                                     <color key="pageIndicatorTintColor" red="0.37647058820000001" green="0.54117647059999996" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="currentPageIndicatorTintColor" red="0.074509803920000006" green="0.14117647059999999" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </pageControl>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TqB-jx-gzJ">
+                                                    <rect key="frame" x="12" y="200" width="165" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <state key="normal" title="Показать полностью...">
+                                                        <color key="titleColor" red="0.37458840012550354" green="0.54017406702041626" blue="0.78042423725128174" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tapShowMoreButton:" destination="ZaA-1V-bTF" eventType="touchUpInside" id="zMu-H7-6n4"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -201,10 +214,13 @@
                                                 <constraint firstItem="9hd-wh-jN8" firstAttribute="top" secondItem="yb8-V4-IIW" secondAttribute="top" constant="14" id="CCq-MA-DmV"/>
                                                 <constraint firstAttribute="trailing" secondItem="HPY-YG-tuI" secondAttribute="trailing" id="HIH-S7-TtT"/>
                                                 <constraint firstItem="9hd-wh-jN8" firstAttribute="leading" secondItem="9oV-VO-h56" secondAttribute="trailing" constant="10" id="J4K-DR-53n"/>
-                                                <constraint firstItem="LhU-tU-ch3" firstAttribute="top" secondItem="OhV-Mq-slQ" secondAttribute="bottom" constant="6" id="KWU-TI-MnS"/>
+                                                <constraint firstItem="LhU-tU-ch3" firstAttribute="top" secondItem="OhV-Mq-slQ" secondAttribute="bottom" priority="750" constant="6" id="KWU-TI-MnS"/>
+                                                <constraint firstItem="OhV-Mq-slQ" firstAttribute="leading" secondItem="TqB-jx-gzJ" secondAttribute="leading" id="KkS-se-2cc"/>
                                                 <constraint firstItem="9oV-VO-h56" firstAttribute="leading" secondItem="yb8-V4-IIW" secondAttribute="leading" constant="12" id="M44-bj-9gn"/>
+                                                <constraint firstItem="TqB-jx-gzJ" firstAttribute="bottom" secondItem="OhV-Mq-slQ" secondAttribute="bottom" id="MUN-Ev-1cW"/>
                                                 <constraint firstItem="yBb-hC-cbs" firstAttribute="leading" secondItem="9hd-wh-jN8" secondAttribute="leading" id="RYO-I3-20m"/>
                                                 <constraint firstAttribute="bottom" secondItem="HPY-YG-tuI" secondAttribute="bottom" id="TAH-lu-5UC"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TqB-jx-gzJ" secondAttribute="trailing" constant="20" symbolic="YES" id="auE-Ai-Tkz"/>
                                                 <constraint firstItem="dKE-Pw-q8H" firstAttribute="top" secondItem="LhU-tU-ch3" secondAttribute="bottom" id="b6z-FE-IMv"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yBb-hC-cbs" secondAttribute="trailing" constant="20" symbolic="YES" id="cr8-bd-g0c"/>
                                                 <constraint firstItem="yBb-hC-cbs" firstAttribute="top" secondItem="9hd-wh-jN8" secondAttribute="bottom" constant="1" id="gl9-uR-wkT"/>
@@ -240,6 +256,8 @@
                                     <outlet property="pageControlHeightConstraint" destination="P79-2F-dNq" id="xXj-F5-bcY"/>
                                     <outlet property="profileImageView" destination="9oV-VO-h56" id="dj3-Vs-SKG"/>
                                     <outlet property="repostLabel" destination="oyc-04-wOk" id="I4D-dm-MoT"/>
+                                    <outlet property="showMoreButton" destination="TqB-jx-gzJ" id="zIN-ZJ-fiV"/>
+                                    <outlet property="textHeightConstraint" destination="hcd-7P-xAo" id="Dv8-zC-4xN"/>
                                     <outlet property="textView" destination="OhV-Mq-slQ" id="k3x-e9-aNY"/>
                                     <outlet property="viewsLabel" destination="tr8-wY-0Kp" id="CRx-mM-EOW"/>
                                 </connections>

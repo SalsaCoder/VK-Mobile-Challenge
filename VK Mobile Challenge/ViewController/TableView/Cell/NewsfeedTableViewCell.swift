@@ -10,6 +10,7 @@ import UIKit
 
 final class NewsfeedTableViewCell: UITableViewCell {
     private static let pageControlHeight: CGFloat = 39
+    private let maximumNumberOfLines = 6
 
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
@@ -26,7 +27,10 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var cvHorizontalAspectRationConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionViewZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
 
+
+    @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
             profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
@@ -39,7 +43,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var textView: UITextView! {
         didSet {
-            textView.textContainerInset = .zero
+            textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             textView.textContainer.lineFragmentPadding = 0
         }
     }
@@ -70,25 +74,27 @@ final class NewsfeedTableViewCell: UITableViewCell {
             collectionView.dataSource = collectionViewManager
         }
     }
-    
+
+    @IBAction func tapShowMoreButton(_ sender: Any) {
+
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        if let lineHeight = textView.font?.lineHeight {
+//             Резервируем строки для кнопки "Показать полностью"
+            textHeightConstraint.constant = lineHeight * CGFloat(maximumNumberOfLines + 2)
+            showMoreButton.isHidden = false
+        }
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
 
         task?.cancel()
         task = nil
         profileImageView.image = nil
-
-        configureCollectionViewForHorizontal()
-    }
-
-    private func configureCollectionViewForVertical() {
-        cvHorizontalAspectRationConstraint.isActive = false
-        cvVerticalAspectRatioConstraint.isActive = true
-    }
-
-    private func configureCollectionViewForHorizontal() {
-        cvHorizontalAspectRationConstraint.isActive = true
-        cvVerticalAspectRatioConstraint.isActive = false
     }
 }
 
@@ -98,35 +104,54 @@ extension NewsfeedTableViewCell {
         dateLabel.text = viewModel.date
         textView.text = viewModel.text
 
-        viewsLabel.text = viewModel.counters.views
-        repostLabel.text = viewModel.counters.reposts
-        commentsLabel.text = viewModel.counters.comments
-        likesLabel.text = viewModel.counters.likes
-
-        counterSeparator.isHidden = viewModel.photos.count < 2
-        pageControl.numberOfPages = viewModel.photos.count
-        collectionViewManager.photoUrls = viewModel.photos.compactMap({ $0.url })
+        configureCounters(with: viewModel.counters)
+        configureCollectionView(with: viewModel.photos)
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
-        pageControlHeightConstraint.constant = viewModel.photos.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
-        collectionViewZeroHeightConstraint.isActive = viewModel.photos.isEmpty
+    }
 
-        collectionView.reloadData()
-        task = profileImageView.setImage(with: viewModel.authorImageUrl)
+    func configureCollectionView(with photos: [NewsfeedViewModel.PhotoViewModel]) {
+        counterSeparator.isHidden = photos.count < 2
+        pageControl.numberOfPages = photos.count
+        collectionViewManager.photoUrls = photos.compactMap({ $0.url })
+
+        pageControlHeightConstraint.constant = photos.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
+        collectionViewZeroHeightConstraint.isActive = photos.isEmpty
 
         // Если одна фотка и она вертикальная,
         // настраиваем констрейнты для вертикального отображения
-        if viewModel.photos.count == 1 {
-            let photo = viewModel.photos.first!
+        if photos.count == 1 {
+            let photo = photos.first!
             if photo.width < photo.height {
                 configureCollectionViewForVertical()
             }
         }
+
+        collectionView.reloadData()
+    }
+
+    func configureCounters(with viewModel: NewsfeedViewModel.CountersViewModel) {
+        viewsLabel.text = viewModel.views
+        repostLabel.text = viewModel.reposts
+        commentsLabel.text = viewModel.comments
+        likesLabel.text = viewModel.likes
     }
 }
 
 extension NewsfeedTableViewCell: NewsFeedCollectionViewManagerDelegate {
     func newsFeedCollectionViewManager(_ collectionViewManager: NewsFeedCollectionViewManager, didShowPhotoAt index: Int) {
         pageControl.currentPage = index
+    }
+}
+
+private extension NewsfeedTableViewCell {
+    func configureCollectionViewForVertical() {
+        cvHorizontalAspectRationConstraint.isActive = false
+        cvVerticalAspectRatioConstraint.isActive = true
+    }
+
+    func configureCollectionViewForHorizontal() {
+        cvHorizontalAspectRationConstraint.isActive = true
+        cvVerticalAspectRatioConstraint.isActive = false
     }
 }
