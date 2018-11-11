@@ -11,7 +11,7 @@ import Foundation
 struct Newsfeed: Decodable {
     let items: [NewsfeedItem]
     let profiles: [User]
-    let nextFrom: String
+    let nextFrom: String?
 
     enum CodingKeys: String, CodingKey {
         case items

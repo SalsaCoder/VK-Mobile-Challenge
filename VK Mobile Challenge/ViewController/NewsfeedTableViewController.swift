@@ -14,8 +14,13 @@ final class NewsfeedTableViewController: UITableViewController {
     lazy var tableViewManager = NewsfeedTableViewManager(tableView: tableView)
     let authService = AuthService()
 
+    var lastNextFrom: String?
+    var isLoading = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableViewManager.delegate = self
 
         tableView.delegate = tableViewManager
         tableView.dataSource = tableViewManager
@@ -40,9 +45,14 @@ final class NewsfeedTableViewController: UITableViewController {
 
 extension NewsfeedTableViewController: NewsfeedServiceDelegate {
     func newsfeedService(_ service: NewsfeedService, didLoad newsfeed: Newsfeed) {
-        tableViewManager.viewModels = viewModelBuilder.buildViewModels(from: newsfeed)
+        let viewModels = viewModelBuilder.buildViewModels(from: newsfeed)
+        tableViewManager.viewModels.append(contentsOf: viewModels)
+
+        lastNextFrom = newsfeed.nextFrom
+        isLoading = false
         
         DispatchQueue.main.async {
+            self.tableViewManager.showLoadingIndicator = false
             self.tableView.reloadData()
         }
     }
@@ -57,10 +67,24 @@ extension NewsfeedTableViewController: AuthServiceDelegate {
         newsfeedService.accessToken = token.accessToken
 
         tableViewManager.showLoadingIndicator = true
+        isLoading = true
         newsfeedService.loadNewsfeed()
     }
 
     func authServiceDidFail(_ authService: AuthService) {
 
+    }
+}
+
+extension NewsfeedTableViewController: NewsfeedTableViewManagerDelegate {
+    func newsfeedTableViewManagerWillScrollToEnd(_ manager: NewsfeedTableViewManager) {
+        guard !isLoading && lastNextFrom != nil  else {
+            return
+        }
+
+        isLoading = true
+        newsfeedService.startFrom = lastNextFrom
+        newsfeedService.loadNewsfeed()
+        tableViewManager.showLoadingIndicator = true
     }
 }

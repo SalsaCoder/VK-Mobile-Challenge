@@ -15,7 +15,7 @@ protocol NewsfeedServiceDelegate: class {
 
 final class NewsfeedService {
     weak var delegate: NewsfeedServiceDelegate?
-    let loader: Loader
+    private let loader: Loader
 
     var accessToken: String?
     var startFrom: String?

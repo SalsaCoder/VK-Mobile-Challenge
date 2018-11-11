@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol NewsfeedTableViewManagerDelegate: class {
+    func newsfeedTableViewManagerWillScrollToEnd(_ manager: NewsfeedTableViewManager)
+}
+
 final class NewsfeedTableViewManager: NSObject {
     var viewModels = [NewsfeedViewModel]()
     let tableView: UITableView
+    weak var delegate: NewsfeedTableViewManagerDelegate?
 
     private let loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .gray)
@@ -56,6 +61,15 @@ extension NewsfeedTableViewManager: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pointToLoadNextPage = scrollView.contentSize.height - 2 * scrollView.bounds.height;
+
+        if scrollView.contentOffset.y >= pointToLoadNextPage {
+            delegate?.newsfeedTableViewManagerWillScrollToEnd(self)
+        }
+    }
+
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
