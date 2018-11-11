@@ -18,21 +18,23 @@ final class NewsfeedTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        setupBackgroundView()
+        setupRefreshControl()
 
+        authService.delegate = self
+        newsfeedService.delegate = self
+
+        authService.requestAuthorization()
+    }
+
+    private func setupTableView() {
         tableViewManager.delegate = self
         tableViewManager.showLoadingIndicator = true
 
         tableView.delegate = tableViewManager
         tableView.dataSource = tableViewManager
         tableView.estimatedRowHeight = 300
-
-        authService.delegate = self
-        newsfeedService.delegate = self
-
-        authService.requestAuthorization()
-
-        setupBackgroundView()
-        setupRefreshControl()
     }
 
     private func setupBackgroundView() {
