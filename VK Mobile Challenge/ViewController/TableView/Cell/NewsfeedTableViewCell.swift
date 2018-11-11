@@ -11,9 +11,8 @@ import UIKit
 final class NewsfeedTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
-    let collectionViewManager = NewsFeedCollectionViewManager()
-
-    var task: URLSessionDataTask?
+    private let collectionViewManager = NewsFeedCollectionViewManager()
+    private var task: URLSessionDataTask?
 
     @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
