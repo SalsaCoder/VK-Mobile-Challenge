@@ -32,7 +32,7 @@ final class NewsfeedTableViewController: UITableViewController {
 
         setupBackgroundView()
 
-        tableView.estimatedRowHeight = 500
+        tableView.estimatedRowHeight = 300
     }
 
     private func setupBackgroundView() {
@@ -82,13 +82,13 @@ extension NewsfeedTableViewController: AuthServiceDelegate {
 
 extension NewsfeedTableViewController: NewsfeedTableViewManagerDelegate {
     func newsfeedTableViewManagerWillScrollToEnd(_ manager: NewsfeedTableViewManager) {
-//        guard !isLoading && lastNextFrom != nil  else {
-//            return
-//        }
-//
-//        isLoading = true
-//        newsfeedService.startFrom = lastNextFrom
-//        newsfeedService.loadNewsfeed()
-//        tableViewManager.showLoadingIndicator = true
+        guard !isLoading && lastNextFrom != nil  else {
+            return
+        }
+
+        isLoading = true
+        newsfeedService.startFrom = lastNextFrom
+        newsfeedService.loadNewsfeed()
+        tableViewManager.showLoadingIndicator = true
     }
 }
