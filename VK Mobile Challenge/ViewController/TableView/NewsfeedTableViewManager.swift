@@ -24,6 +24,13 @@ final class NewsfeedTableViewManager: NSObject {
         return indicator
     }()
 
+    private lazy var postCountView: CounterFooterView = {
+        let view = CounterFooterView()
+        view.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 64)
+
+        return view
+    }()
+
     init(tableView: UITableView) {
         self.tableView = tableView
         super.init()
@@ -32,11 +39,12 @@ final class NewsfeedTableViewManager: NSObject {
     var showLoadingIndicator: Bool = false {
         didSet {
             if showLoadingIndicator {
-                tableView.tableFooterView = loadingIndicator
                 loadingIndicator.startAnimating()
+                tableView.tableFooterView = loadingIndicator
             } else {
-                tableView.tableFooterView = UIView()
                 loadingIndicator.stopAnimating()
+                postCountView.postCount = viewModels.count
+                tableView.tableFooterView = postCountView
             }
         }
     }
@@ -84,7 +92,6 @@ extension NewsfeedTableViewManager: NewsfeedTableViewCellDelegate {
         }
 
         viewModels[indexPath.row].shouldTrimmText = false
-
         tableView.reloadRows(at: [indexPath], with: .none)
     }
 }

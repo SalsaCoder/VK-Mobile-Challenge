@@ -21,6 +21,7 @@ final class NewsfeedTableViewController: UITableViewController {
         super.viewDidLoad()
 
         tableViewManager.delegate = self
+        tableViewManager.showLoadingIndicator = true
 
         tableView.delegate = tableViewManager
         tableView.dataSource = tableViewManager
@@ -62,7 +63,7 @@ extension NewsfeedTableViewController: NewsfeedServiceDelegate {
     func newsfeedService(_ service: NewsfeedService, didFailWith error: Error) {
         print(error)
         isLoading = false
-        tableViewManager.showLoadingIndicator = true
+        tableViewManager.showLoadingIndicator = false
     }
 }
 
@@ -89,6 +90,7 @@ extension NewsfeedTableViewController: NewsfeedTableViewManagerDelegate {
         isLoading = true
         newsfeedService.startFrom = lastNextFrom
         newsfeedService.loadNewsfeed()
+
         tableViewManager.showLoadingIndicator = true
     }
 }
