@@ -29,7 +29,7 @@ struct NewsfeedItem: Decodable {
         case likes
         case reposts
         case views
-        case  attachments
+        case attachments
         case sourceId = "source_id"
         case copyHistory = "copy_history"
     }

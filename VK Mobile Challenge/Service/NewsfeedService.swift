@@ -17,13 +17,18 @@ final class NewsfeedService {
     weak var delegate: NewsfeedServiceDelegate?
     let loader: Loader
 
-    var accessToken = ""
+    var accessToken: String?
+    var startFrom: String?
 
     init(loader: Loader) {
         self.loader = loader
     }
 
     func loadNewsfeed() {
+        guard accessToken != nil else {
+            return
+        }
+
         guard var urlComponents = URLComponents(string: Constants.URLs.newsfeed) else {
             return
         }
@@ -56,9 +61,18 @@ final class NewsfeedService {
     }
 
     private var queryItems: [URLQueryItem] {
-        return [URLQueryItem(name: "filters", value: "post"),
-                URLQueryItem(name: "access_token", value: accessToken),
-                URLQueryItem(name: "v", value: Constants.apiVersion),
-                URLQueryItem(name: "count", value: "20")]
+        var queryItems = [URLQueryItem(name: "filters", value: "post"),
+                          URLQueryItem(name: "v", value: Constants.apiVersion),
+                          URLQueryItem(name: "count", value: "20")]
+
+        if let accessToken = accessToken {
+            queryItems.append(URLQueryItem(name: "access_token", value: accessToken))
+        }
+
+        if let startFrom = startFrom {
+            queryItems.append(URLQueryItem(name: "start_from", value: startFrom))
+        }
+
+        return queryItems
     }
 }
