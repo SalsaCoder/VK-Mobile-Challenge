@@ -25,6 +25,8 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var counterSeparator: UIView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var collectionView: UICollectionView!
 
     @IBAction func tapShowMoreButton(_ sender: UIButton) {
     }
@@ -40,6 +42,8 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
         profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
         profileImageView.layer.masksToBounds = true
+
+        pageControl.hidesForSinglePage = true
     }
 
     func configure(with viewModel: NewsfeedViewModel) {
@@ -51,6 +55,8 @@ final class NewsfeedTableViewCell: UITableViewCell {
         repostLabel.text = viewModel.repostCount > 0 ? "\(viewModel.repostCount)" : nil
         commentsLabel.text = viewModel.commentsCount > 0 ? "\(viewModel.commentsCount)" : nil
         likesLabel.text = viewModel.likeCounts > 0 ? "\(viewModel.likeCounts)" : nil
+
+        pageControl.numberOfPages = viewModel.photoUrls.count
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
     }
