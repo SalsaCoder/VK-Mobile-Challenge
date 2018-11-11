@@ -14,7 +14,7 @@ protocol NewsFeedCollectionViewManagerDelegate: class {
 
 final class NewsFeedCollectionViewManager: NSObject {
     weak var delegate: NewsFeedCollectionViewManagerDelegate?
-    var imageUrls: [URL] = []
+    var photoUrls: [URL] = []
 }
 
 extension NewsFeedCollectionViewManager: UICollectionViewDataSource {
@@ -22,7 +22,7 @@ extension NewsFeedCollectionViewManager: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewsfeedCollectionViewCell.reuseIdentifier, for: indexPath)
 
         if let cell = cell as? NewsfeedCollectionViewCell {
-            let url = imageUrls[indexPath.row]
+            let url = photoUrls[indexPath.row]
             cell.configure(with: url)
         }
 
@@ -34,7 +34,7 @@ extension NewsFeedCollectionViewManager: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageUrls.count
+        return photoUrls.count
     }
 }
 
@@ -42,7 +42,7 @@ extension NewsFeedCollectionViewManager: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = collectionView.bounds.size
 
-        if imageUrls.count == 1 {
+        if photoUrls.count == 1 {
             return size
         }
 
@@ -52,7 +52,7 @@ extension NewsFeedCollectionViewManager: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if imageUrls.count == 1 {
+        if photoUrls.count == 1 {
             return .zero
         }
 
@@ -60,7 +60,7 @@ extension NewsFeedCollectionViewManager: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        if imageUrls.count == 1 {
+        if photoUrls.count == 1 {
             return 0
         }
 

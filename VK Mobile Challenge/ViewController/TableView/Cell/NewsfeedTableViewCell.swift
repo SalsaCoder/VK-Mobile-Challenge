@@ -9,6 +9,8 @@
 import UIKit
 
 final class NewsfeedTableViewCell: UITableViewCell {
+    private static let pageControlHeight: CGFloat = 39
+
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
     private lazy var collectionViewManager: NewsFeedCollectionViewManager = {
@@ -19,6 +21,10 @@ final class NewsfeedTableViewCell: UITableViewCell {
     }()
 
     private var task: URLSessionDataTask?
+
+    @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
@@ -49,8 +55,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var counterSeparator: UIView!
-    @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
-    
+
     @IBOutlet weak var pageControl: UIPageControl! {
         didSet {
             pageControl.hidesForSinglePage = true
@@ -88,11 +93,17 @@ extension NewsfeedTableViewCell {
         counterSeparator.isHidden = viewModel.photoUrls.count < 2
 
         pageControl.numberOfPages = viewModel.photoUrls.count
-        collectionViewManager.imageUrls = viewModel.photoUrls
+        collectionViewManager.photoUrls = viewModel.photoUrls
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
 
-        pageControlHeightConstraint.constant = viewModel.photoUrls.count > 1 ? 39 : 0
+        pageControlHeightConstraint.constant = viewModel.photoUrls.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
+        collectionViewHeightConstraint.constant = viewModel.photoUrls.count > 0 ? 150 : 0
+
+        if let lineHeight = textView.font?.lineHeight {
+            textView.text += "\nПоказать полностью..."
+            textViewHeightConstraint.constant = lineHeight * 7
+        }
 
         collectionView.reloadData()
     }

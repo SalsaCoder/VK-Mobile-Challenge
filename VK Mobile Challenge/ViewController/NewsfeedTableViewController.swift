@@ -59,6 +59,8 @@ extension NewsfeedTableViewController: NewsfeedServiceDelegate {
 
     func newsfeedService(_ service: NewsfeedService, didFailWith error: Error) {
         print(error)
+        isLoading = false
+        tableViewManager.showLoadingIndicator = true
     }
 }
 
@@ -78,13 +80,13 @@ extension NewsfeedTableViewController: AuthServiceDelegate {
 
 extension NewsfeedTableViewController: NewsfeedTableViewManagerDelegate {
     func newsfeedTableViewManagerWillScrollToEnd(_ manager: NewsfeedTableViewManager) {
-        guard !isLoading && lastNextFrom != nil  else {
-            return
-        }
-
-        isLoading = true
-        newsfeedService.startFrom = lastNextFrom
-        newsfeedService.loadNewsfeed()
-        tableViewManager.showLoadingIndicator = true
+//        guard !isLoading && lastNextFrom != nil  else {
+//            return
+//        }
+//
+//        isLoading = true
+//        newsfeedService.startFrom = lastNextFrom
+//        newsfeedService.loadNewsfeed()
+//        tableViewManager.showLoadingIndicator = true
     }
 }

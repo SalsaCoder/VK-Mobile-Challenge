@@ -69,6 +69,9 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhV-Mq-slQ">
                                                     <rect key="frame" x="12" y="58" width="335" height="123.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="123.5" id="SgL-Yu-2uG"/>
+                                                    </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -205,7 +208,6 @@
                                                 <constraint firstItem="9oV-VO-h56" firstAttribute="top" secondItem="yb8-V4-IIW" secondAttribute="top" constant="12" id="psT-uw-ayq"/>
                                                 <constraint firstItem="OhV-Mq-slQ" firstAttribute="top" secondItem="9oV-VO-h56" secondAttribute="bottom" constant="10" id="qWE-3Q-0bG"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9hd-wh-jN8" secondAttribute="trailing" constant="20" symbolic="YES" id="qhS-ve-gFq"/>
-                                                <constraint firstItem="LhU-tU-ch3" firstAttribute="top" secondItem="OhV-Mq-slQ" secondAttribute="bottom" constant="6" id="tbU-wA-EPO"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -219,6 +221,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="collectionView" destination="LhU-tU-ch3" id="Qfw-LJ-1HV"/>
+                                    <outlet property="collectionViewHeightConstraint" destination="GdK-Hf-vsI" id="Xje-YG-RwI"/>
                                     <outlet property="commentsLabel" destination="bMV-Ag-Sxr" id="gMX-1K-MIS"/>
                                     <outlet property="containerView" destination="yb8-V4-IIW" id="0Ro-zv-uT6"/>
                                     <outlet property="counterSeparator" destination="JL5-jY-KlJ" id="PX3-DE-C2T"/>
@@ -230,6 +233,7 @@
                                     <outlet property="profileImageView" destination="9oV-VO-h56" id="dj3-Vs-SKG"/>
                                     <outlet property="repostLabel" destination="oyc-04-wOk" id="I4D-dm-MoT"/>
                                     <outlet property="textView" destination="OhV-Mq-slQ" id="k3x-e9-aNY"/>
+                                    <outlet property="textViewHeightConstraint" destination="SgL-Yu-2uG" id="G5j-Ak-2u6"/>
                                     <outlet property="viewsLabel" destination="tr8-wY-0Kp" id="CRx-mM-EOW"/>
                                 </connections>
                             </tableViewCell>
