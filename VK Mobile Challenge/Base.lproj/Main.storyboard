@@ -67,11 +67,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhV-Mq-slQ">
-                                                    <rect key="frame" x="12" y="58" width="335" height="123.5"/>
+                                                    <rect key="frame" x="12" y="58" width="335" height="172"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="123.5" id="SgL-Yu-2uG"/>
-                                                    </constraints>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -161,6 +158,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" id="Lrn-ju-Apf"/>
                                                         <constraint firstAttribute="width" secondItem="LhU-tU-ch3" secondAttribute="height" multiplier="4:3" priority="750" id="vku-gq-dkT"/>
+                                                        <constraint firstAttribute="width" secondItem="LhU-tU-ch3" secondAttribute="height" multiplier="3:4" priority="750" id="wAa-Q7-h3T"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="4" minimumInteritemSpacing="4" id="pYD-CZ-0pH">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -181,6 +179,7 @@
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="Lrn-ju-Apf"/>
+                                                            <exclude reference="wAa-Q7-h3T"/>
                                                         </mask>
                                                     </variation>
                                                 </collectionView>
@@ -202,6 +201,7 @@
                                                 <constraint firstItem="9hd-wh-jN8" firstAttribute="top" secondItem="yb8-V4-IIW" secondAttribute="top" constant="14" id="CCq-MA-DmV"/>
                                                 <constraint firstAttribute="trailing" secondItem="HPY-YG-tuI" secondAttribute="trailing" id="HIH-S7-TtT"/>
                                                 <constraint firstItem="9hd-wh-jN8" firstAttribute="leading" secondItem="9oV-VO-h56" secondAttribute="trailing" constant="10" id="J4K-DR-53n"/>
+                                                <constraint firstItem="LhU-tU-ch3" firstAttribute="top" secondItem="OhV-Mq-slQ" secondAttribute="bottom" constant="6" id="KWU-TI-MnS"/>
                                                 <constraint firstItem="9oV-VO-h56" firstAttribute="leading" secondItem="yb8-V4-IIW" secondAttribute="leading" constant="12" id="M44-bj-9gn"/>
                                                 <constraint firstItem="yBb-hC-cbs" firstAttribute="leading" secondItem="9hd-wh-jN8" secondAttribute="leading" id="RYO-I3-20m"/>
                                                 <constraint firstAttribute="bottom" secondItem="HPY-YG-tuI" secondAttribute="bottom" id="TAH-lu-5UC"/>
@@ -239,7 +239,6 @@
                                     <outlet property="profileImageView" destination="9oV-VO-h56" id="dj3-Vs-SKG"/>
                                     <outlet property="repostLabel" destination="oyc-04-wOk" id="I4D-dm-MoT"/>
                                     <outlet property="textView" destination="OhV-Mq-slQ" id="k3x-e9-aNY"/>
-                                    <outlet property="textViewHeightConstraint" destination="SgL-Yu-2uG" id="G5j-Ak-2u6"/>
                                     <outlet property="viewsLabel" destination="tr8-wY-0Kp" id="CRx-mM-EOW"/>
                                 </connections>
                             </tableViewCell>

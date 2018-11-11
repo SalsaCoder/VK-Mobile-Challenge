@@ -71,6 +71,6 @@ extension NewsfeedTableViewManager: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 700
+        return UITableView.automaticDimension
     }
 }

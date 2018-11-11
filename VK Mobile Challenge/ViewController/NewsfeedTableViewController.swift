@@ -31,6 +31,8 @@ final class NewsfeedTableViewController: UITableViewController {
         authService.requestAuthorization()
 
         setupBackgroundView()
+
+        tableView.estimatedRowHeight = 500
     }
 
     private func setupBackgroundView() {
