@@ -19,8 +19,21 @@ struct Photo: Decodable {
 }
 
 struct PhotoSize: Decodable {
-    let type: String
+    let type: PhotoSizeType
     let url: URL
     let width: Int
     let height: Int
+}
+
+enum PhotoSizeType: String, Decodable {
+    case s
+    case m
+    case x
+    case o
+    case p
+    case q
+    case r
+    case y
+    case z
+    case w
 }

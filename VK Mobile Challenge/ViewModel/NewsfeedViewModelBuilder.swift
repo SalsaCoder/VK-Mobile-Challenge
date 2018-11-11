@@ -12,6 +12,7 @@ final class NewsfeedViewModelBuilder {
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "d MMM yyyy"
+        dateFormatter.locale = Locale(identifier: "ru_RU")
 
         return dateFormatter
     }()
