@@ -39,8 +39,6 @@ extension NewsFeedCollectionViewManager: UICollectionViewDataSource {
 }
 
 extension NewsFeedCollectionViewManager: UICollectionViewDelegateFlowLayout {
-    private static let itemInset: CGFloat = 12
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = collectionView.bounds.size
 
@@ -48,9 +46,25 @@ extension NewsFeedCollectionViewManager: UICollectionViewDelegateFlowLayout {
             return size
         }
 
-        size.width -= NewsFeedCollectionViewManager.itemInset * 2
+        size.width -= 12 * 2
 
         return size
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if imageUrls.count == 1 {
+            return .zero
+        }
+
+        return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if imageUrls.count == 1 {
+            return 0
+        }
+
+        return 4
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
