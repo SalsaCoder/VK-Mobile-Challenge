@@ -9,7 +9,7 @@
 import Foundation
 
 struct NewsfeedViewModel {
-    struct Counters {
+    struct CountersViewModel {
         let likes: String?
         let comments: String?
         let reposts: String?
@@ -21,5 +21,5 @@ struct NewsfeedViewModel {
     let authorImageUrl: URL
     let text: String
     let photoUrls: [URL]
-    let counters: Counters
+    let counters: CountersViewModel
 }

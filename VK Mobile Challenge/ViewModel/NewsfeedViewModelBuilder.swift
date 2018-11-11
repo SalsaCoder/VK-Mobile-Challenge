@@ -35,18 +35,10 @@ final class NewsfeedViewModelBuilder {
                     return nil
                 }
 
-                return photoAttachment.photo.sizes.last?.url
+                return photoAttachment.photo.sizes.first(where: { $0.type == .r })?.url
             })
 
-            let likes = item.likes.count
-            let comments = item.comments.count
-            let reposts = item.reposts.count
-            let views = item.views?.count ?? 0
-
-            let counters = NewsfeedViewModel.Counters(likes: likes > 0 ? "\(likes)" : nil,
-                                                     comments: comments > 0 ? "\(comments)" : nil,
-                                                     reposts: reposts > 0 ? "\(reposts)" : nil,
-                                                     views: views > 0 ? "\(views)" : nil)
+            let counters = makeCountersViewModel(item: item)
 
             let viewModel = NewsfeedViewModel(name: name,
                                               date: date,
@@ -59,5 +51,18 @@ final class NewsfeedViewModelBuilder {
         }
 
         return viewModels
+    }
+
+    private func makeCountersViewModel(item: NewsfeedItem) -> NewsfeedViewModel.CountersViewModel {
+
+        let likes = item.likes.count
+        let comments = item.comments.count
+        let reposts = item.reposts.count
+        let views = item.views?.count ?? 0
+
+        return NewsfeedViewModel.CountersViewModel(likes: likes > 0 ? "\(likes)" : nil,
+                                                   comments: comments > 0 ? "\(comments)" : nil,
+                                                   reposts: reposts > 0 ? "\(reposts)" : nil,
+                                                   views: views > 0 ? "\(views)" : nil)
     }
 }
