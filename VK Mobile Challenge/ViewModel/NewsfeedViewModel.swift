@@ -9,13 +9,17 @@
 import Foundation
 
 struct NewsfeedViewModel {
+    struct Counters {
+        let likes: String?
+        let comments: String?
+        let reposts: String?
+        let views: String?
+    }
+
     let name: String
     let date: String
     let authorImageUrl: URL
     let text: String
     let photoUrls: [URL]
-    let likeCounts: Int
-    let commentsCount: Int
-    let repostCount: Int
-    let viewsCount: Int
+    let counters: Counters
 }

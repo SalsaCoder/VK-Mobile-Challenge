@@ -85,10 +85,10 @@ extension NewsfeedTableViewCell {
         dateLabel.text = viewModel.date
         textView.text = viewModel.text
 
-        viewsLabel.text = viewModel.viewsCount > 0 ? "\(viewModel.viewsCount)" : nil
-        repostLabel.text = viewModel.repostCount > 0 ? "\(viewModel.repostCount)" : nil
-        commentsLabel.text = viewModel.commentsCount > 0 ? "\(viewModel.commentsCount)" : nil
-        likesLabel.text = viewModel.likeCounts > 0 ? "\(viewModel.likeCounts)" : nil
+        viewsLabel.text = viewModel.counters.views
+        repostLabel.text = viewModel.counters.reposts
+        commentsLabel.text = viewModel.counters.comments
+        likesLabel.text = viewModel.counters.likes
 
         counterSeparator.isHidden = viewModel.photoUrls.count < 2
 

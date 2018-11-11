@@ -38,15 +38,22 @@ final class NewsfeedViewModelBuilder {
                 return photoAttachment.photo.sizes.last?.url
             })
 
+            let likes = item.likes.count
+            let comments = item.comments.count
+            let reposts = item.reposts.count
+            let views = item.views?.count ?? 0
+
+            let counters = NewsfeedViewModel.Counters(likes: likes > 0 ? "\(likes)" : nil,
+                                                     comments: comments > 0 ? "\(comments)" : nil,
+                                                     reposts: reposts > 0 ? "\(reposts)" : nil,
+                                                     views: views > 0 ? "\(views)" : nil)
+
             let viewModel = NewsfeedViewModel(name: name,
                                               date: date,
                                               authorImageUrl: user.photo,
                                               text: item.text,
                                               photoUrls: photoUrls ?? [],
-                                              likeCounts: item.likes.count,
-                                              commentsCount: item.comments.count,
-                                              repostCount: item.reposts.count,
-                                              viewsCount: item.views?.count ?? 0)
+                                              counters: counters)
 
             viewModels.append(viewModel)
         }
