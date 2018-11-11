@@ -27,6 +27,7 @@
 		458F45912196C5870063E93A /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458F45902196C5870063E93A /* Token.swift */; };
 		458F45942196CC0D0063E93A /* NewsfeedTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458F45932196CC0D0063E93A /* NewsfeedTableViewManager.swift */; };
 		458F45992196CEA00063E93A /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458F45982196CEA00063E93A /* UIImageViewExtension.swift */; };
+		45C463DB2198C6FE000B218F /* CounterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C463DA2198C6FE000B218F /* CounterFooterView.swift */; };
 		45C86B082195CC5500B50663 /* NewsfeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C86B072195CC5500B50663 /* NewsfeedService.swift */; };
 		45D789D1219589EE00908708 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D789D0219589EE00908708 /* AppDelegate.swift */; };
 		45D789D6219589EE00908708 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D789D4219589EE00908708 /* Main.storyboard */; };
@@ -62,6 +63,7 @@
 		458F45902196C5870063E93A /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		458F45932196CC0D0063E93A /* NewsfeedTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedTableViewManager.swift; sourceTree = "<group>"; };
 		458F45982196CEA00063E93A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		45C463DA2198C6FE000B218F /* CounterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFooterView.swift; sourceTree = "<group>"; };
 		45C86B072195CC5500B50663 /* NewsfeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedService.swift; sourceTree = "<group>"; };
 		45D789CD219589EE00908708 /* VK Mobile Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK Mobile Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45D789D0219589EE00908708 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		458F45922196CBF00063E93A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				45C463D92198C6F6000B218F /* View */,
 				4540B3052197DF700043EBBD /* CollectionView */,
 				458F459A2196DC510063E93A /* TableView */,
 				45FC27082196931C00B7D58C /* NewsfeedTableViewController.swift */,
@@ -184,6 +187,14 @@
 				458F45932196CC0D0063E93A /* NewsfeedTableViewManager.swift */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		45C463D92198C6F6000B218F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				45C463DA2198C6FE000B218F /* CounterFooterView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		45D789C4219589ED00908708 = {
@@ -390,6 +401,7 @@
 				4540B3042197DEC10043EBBD /* NewsfeedCollectionViewCell.swift in Sources */,
 				45FC270F2196AE2A00B7D58C /* NewsfeedViewModel.swift in Sources */,
 				45041F0421959F4700EECD8D /* Constants.swift in Sources */,
+				45C463DB2198C6FE000B218F /* CounterFooterView.swift in Sources */,
 				45041F0221959A8100EECD8D /* User.swift in Sources */,
 				45148F05219690550019BBC7 /* Reposts.swift in Sources */,
 				458F45992196CEA00063E93A /* UIImageViewExtension.swift in Sources */,
