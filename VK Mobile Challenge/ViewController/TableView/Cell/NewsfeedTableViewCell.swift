@@ -11,6 +11,8 @@ import UIKit
 final class NewsfeedTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
+    let collectionViewManager = NewsFeedCollectionViewManager()
+
     var task: URLSessionDataTask?
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -26,7 +28,12 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var counterSeparator: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.delegate = collectionViewManager
+            collectionView.dataSource = collectionViewManager
+        }
+    }
 
     @IBAction func tapShowMoreButton(_ sender: UIButton) {
     }
@@ -57,8 +64,11 @@ final class NewsfeedTableViewCell: UITableViewCell {
         likesLabel.text = viewModel.likeCounts > 0 ? "\(viewModel.likeCounts)" : nil
 
         pageControl.numberOfPages = viewModel.photoUrls.count
+        collectionViewManager.imageUrls = viewModel.photoUrls
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
+
+        collectionView.reloadData()
     }
 
     override func prepareForReuse() {
