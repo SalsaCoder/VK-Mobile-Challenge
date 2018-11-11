@@ -24,6 +24,7 @@ final class NewsfeedTableViewController: UITableViewController {
 
         tableView.delegate = tableViewManager
         tableView.dataSource = tableViewManager
+        tableView.estimatedRowHeight = 300
 
         authService.delegate = self
         newsfeedService.delegate = self
@@ -31,8 +32,7 @@ final class NewsfeedTableViewController: UITableViewController {
         authService.requestAuthorization()
 
         setupBackgroundView()
-
-        tableView.estimatedRowHeight = 300
+        setupRefreshControl()
     }
 
     private func setupBackgroundView() {
@@ -43,16 +43,39 @@ final class NewsfeedTableViewController: UITableViewController {
         backgroundView.layer.insertSublayer(layer, at: 0)
         tableView.backgroundView = backgroundView
     }
+
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = .lightGray
+        refreshControl?.addTarget(self, action: #selector(refreshFeed), for: .valueChanged)
+    }
+
+    @objc func refreshFeed() {
+        state.lastNextFrom = nil
+        newsfeedService.startFrom = nil
+        state.isReloading = true
+        newsfeedService.loadNewsfeed()
+    }
 }
 
 extension NewsfeedTableViewController: NewsfeedServiceDelegate {
     func newsfeedService(_ service: NewsfeedService, didLoad newsfeed: Newsfeed) {
         DispatchQueue.main.async {
+            if self.refreshControl?.isRefreshing ?? false {
+                self.refreshControl?.endRefreshing()
+            }
+
             let viewModels = self.viewModelBuilder.buildViewModels(from: newsfeed, viewWidth: self.view.bounds.width)
-            self.tableViewManager.viewModels.append(contentsOf: viewModels)
+            if self.state.isReloading {
+                self.tableViewManager.viewModels = viewModels
+            } else {
+                self.tableViewManager.viewModels.append(contentsOf: viewModels)
+            }
+
 
             self.state.lastNextFrom = newsfeed.nextFrom
             self.state.isLoading = false
+            self.state.isReloading = false
 
             self.tableViewManager.showLoadingIndicator = false
             self.tableView.reloadData()
@@ -76,7 +99,6 @@ extension NewsfeedTableViewController: AuthServiceDelegate {
     }
 
     func authServiceDidFail(_ authService: AuthService) {
-
     }
 }
 

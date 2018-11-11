@@ -11,4 +11,5 @@ import UIKit
 struct NewsfeedTableViewControllerState {
     var lastNextFrom: String?
     var isLoading = false
+    var isReloading = false
 }
