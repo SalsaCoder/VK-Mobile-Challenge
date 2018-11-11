@@ -14,8 +14,7 @@ final class NewsfeedTableViewController: UITableViewController {
     lazy var tableViewManager = NewsfeedTableViewManager(tableView: tableView)
     let authService = AuthService()
 
-    var lastNextFrom: String?
-    var isLoading = false
+    private var state = NewsfeedTableViewControllerState()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +51,8 @@ extension NewsfeedTableViewController: NewsfeedServiceDelegate {
             let viewModels = self.viewModelBuilder.buildViewModels(from: newsfeed, viewWidth: self.view.bounds.width)
             self.tableViewManager.viewModels.append(contentsOf: viewModels)
 
-            self.lastNextFrom = newsfeed.nextFrom
-            self.isLoading = false
+            self.state.lastNextFrom = newsfeed.nextFrom
+            self.state.isLoading = false
 
             self.tableViewManager.showLoadingIndicator = false
             self.tableView.reloadData()
@@ -62,7 +61,7 @@ extension NewsfeedTableViewController: NewsfeedServiceDelegate {
 
     func newsfeedService(_ service: NewsfeedService, didFailWith error: Error) {
         print(error)
-        isLoading = false
+        state.isLoading = false
         tableViewManager.showLoadingIndicator = false
     }
 }
@@ -72,7 +71,7 @@ extension NewsfeedTableViewController: AuthServiceDelegate {
         newsfeedService.accessToken = token.accessToken
 
         tableViewManager.showLoadingIndicator = true
-        isLoading = true
+        state.isLoading = true
         newsfeedService.loadNewsfeed()
     }
 
@@ -83,12 +82,12 @@ extension NewsfeedTableViewController: AuthServiceDelegate {
 
 extension NewsfeedTableViewController: NewsfeedTableViewManagerDelegate {
     func newsfeedTableViewManagerWillScrollToEnd(_ manager: NewsfeedTableViewManager) {
-        guard !isLoading && lastNextFrom != nil  else {
+        guard !state.isLoading && state.lastNextFrom != nil  else {
             return
         }
 
-        isLoading = true
-        newsfeedService.startFrom = lastNextFrom
+        state.isLoading = true
+        newsfeedService.startFrom = state.lastNextFrom
         newsfeedService.loadNewsfeed()
 
         tableViewManager.showLoadingIndicator = true
