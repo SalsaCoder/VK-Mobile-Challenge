@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Андрей Рогозов"; ObjectID = "9hd-wh-jN8"; */
+"9hd-wh-jN8.text" = "Андрей Рогозов";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."; ObjectID = "OhV-Mq-slQ"; */
+"OhV-Mq-slQ.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
+/* Class = "UIButton"; normalTitle = "Показать полностью..."; ObjectID = "TqB-jx-gzJ"; */
+"TqB-jx-gzJ.normalTitle" = "Показать полностью...";
+
+/* Class = "UILabel"; text = "65"; ObjectID = "Uk1-yi-Pcs"; */
+"Uk1-yi-Pcs.text" = "65";
+
+/* Class = "UILabel"; text = "19"; ObjectID = "bMV-Ag-Sxr"; */
+"bMV-Ag-Sxr.text" = "19";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "oyc-04-wOk"; */
+"oyc-04-wOk.text" = "3";
+
+/* Class = "UILabel"; text = "3"; ObjectID = "tr8-wY-0Kp"; */
+"tr8-wY-0Kp.text" = "3";
+
+/* Class = "UILabel"; text = "9 апр в 16:36"; ObjectID = "yBb-hC-cbs"; */
+"yBb-hC-cbs.text" = "9 апр в 16:36";

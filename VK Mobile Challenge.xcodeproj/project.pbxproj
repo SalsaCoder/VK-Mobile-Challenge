@@ -28,6 +28,7 @@
 		458F45942196CC0D0063E93A /* NewsfeedTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458F45932196CC0D0063E93A /* NewsfeedTableViewManager.swift */; };
 		458F45992196CEA00063E93A /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458F45982196CEA00063E93A /* UIImageViewExtension.swift */; };
 		45C463DB2198C6FE000B218F /* CounterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C463DA2198C6FE000B218F /* CounterFooterView.swift */; };
+		45C463E02198C998000B218F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 45C463E22198C998000B218F /* Localizable.stringsdict */; };
 		45C86B082195CC5500B50663 /* NewsfeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C86B072195CC5500B50663 /* NewsfeedService.swift */; };
 		45D789D1219589EE00908708 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D789D0219589EE00908708 /* AppDelegate.swift */; };
 		45D789D6219589EE00908708 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45D789D4219589EE00908708 /* Main.storyboard */; };
@@ -64,6 +65,9 @@
 		458F45932196CC0D0063E93A /* NewsfeedTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedTableViewManager.swift; sourceTree = "<group>"; };
 		458F45982196CEA00063E93A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		45C463DA2198C6FE000B218F /* CounterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterFooterView.swift; sourceTree = "<group>"; };
+		45C463DC2198C90F000B218F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		45C463DD2198C90F000B218F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		45C463E12198C998000B218F /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		45C86B072195CC5500B50663 /* NewsfeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedService.swift; sourceTree = "<group>"; };
 		45D789CD219589EE00908708 /* VK Mobile Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK Mobile Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45D789D0219589EE00908708 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 				45D789D9219589EE00908708 /* LaunchScreen.storyboard */,
 				45D789DC219589EE00908708 /* Info.plist */,
 				45041F0321959F4700EECD8D /* Constants.swift */,
+				45C463E22198C998000B218F /* Localizable.stringsdict */,
 			);
 			path = "VK Mobile Challenge";
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45D789DB219589EE00908708 /* LaunchScreen.storyboard in Resources */,
+				45C463E02198C998000B218F /* Localizable.stringsdict in Resources */,
 				45D789D8219589EE00908708 /* Assets.xcassets in Resources */,
 				45D789D6219589EE00908708 /* Main.storyboard in Resources */,
 			);
@@ -420,10 +426,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		45C463E22198C998000B218F /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45C463E12198C998000B218F /* ru */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		45D789D4219589EE00908708 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				45D789D5219589EE00908708 /* Base */,
+				45C463DC2198C90F000B218F /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -432,6 +447,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				45D789DA219589EE00908708 /* Base */,
+				45C463DD2198C90F000B218F /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -443,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -504,6 +521,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
