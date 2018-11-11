@@ -39,7 +39,17 @@ extension NewsFeedCollectionViewManager: UICollectionViewDataSource {
 }
 
 extension NewsFeedCollectionViewManager: UICollectionViewDelegateFlowLayout {
+    private static let itemInset: CGFloat = 12
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionView.bounds.size
+        var size = collectionView.bounds.size
+
+        if imageUrls.count == 1 {
+            return size
+        }
+
+        size.width -= NewsFeedCollectionViewManager.itemInset * 2
+
+        return size
     }
 }
