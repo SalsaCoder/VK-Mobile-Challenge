@@ -10,6 +10,31 @@ import UIKit
 
 final class NewsfeedTableViewManager: NSObject {
     var viewModels = [NewsfeedViewModel]()
+    let tableView: UITableView
+
+    private let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        indicator.frame = CGRect(x: 0, y: 0, width: 0, height: 44)
+
+        return indicator
+    }()
+
+    init(tableView: UITableView) {
+        self.tableView = tableView
+        super.init()
+    }
+
+    var showLoadingIndicator: Bool = false {
+        didSet {
+            if showLoadingIndicator {
+                tableView.tableFooterView = loadingIndicator
+                loadingIndicator.startAnimating()
+            } else {
+                tableView.tableFooterView = UIView()
+                loadingIndicator.stopAnimating()
+            }
+        }
+    }
 }
 
 extension NewsfeedTableViewManager: UITableViewDelegate, UITableViewDataSource {

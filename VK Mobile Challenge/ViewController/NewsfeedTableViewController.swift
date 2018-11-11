@@ -11,8 +11,7 @@ import UIKit
 final class NewsfeedTableViewController: UITableViewController {
     let viewModelBuilder = NewsfeedViewModelBuilder()
     let newsfeedService = NewsfeedService(loader: Loader(session: URLSession.shared))
-    let tableViewManager = NewsfeedTableViewManager()
-
+    lazy var tableViewManager = NewsfeedTableViewManager(tableView: tableView)
     let authService = AuthService()
 
     override func viewDidLoad() {
@@ -56,6 +55,8 @@ extension NewsfeedTableViewController: NewsfeedServiceDelegate {
 extension NewsfeedTableViewController: AuthServiceDelegate {
     func authService(_ authService: AuthService, didAuthorizeWith token: Token) {
         newsfeedService.accessToken = token.accessToken
+
+        tableViewManager.showLoadingIndicator = true
         newsfeedService.loadNewsfeed()
     }
 
