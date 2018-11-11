@@ -21,8 +21,8 @@ enum Constants {
 
     enum Colors {
         static let grayGradientLayer: CAGradientLayer = {
-            let color = [UIColor.white.cgColor,
-                         UIColor.lightGray.cgColor]
+            let color = [UIColor(red: 0.97, green: 0.97, blue: 0.98, alpha: 1.0).cgColor,
+                         UIColor(red: 0.92, green: 0.93, blue: 0.94, alpha: 1.0).cgColor]
 
             let locations = [0.0, 1.0] as [NSNumber]
 
