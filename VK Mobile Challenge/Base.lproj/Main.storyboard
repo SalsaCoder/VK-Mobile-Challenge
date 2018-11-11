@@ -231,6 +231,8 @@
                                     <outlet property="commentsLabel" destination="bMV-Ag-Sxr" id="gMX-1K-MIS"/>
                                     <outlet property="containerView" destination="yb8-V4-IIW" id="0Ro-zv-uT6"/>
                                     <outlet property="counterSeparator" destination="JL5-jY-KlJ" id="PX3-DE-C2T"/>
+                                    <outlet property="cvHorizontalAspectRationConstraint" destination="vku-gq-dkT" id="2CY-sh-jNa"/>
+                                    <outlet property="cvVerticalAspectRatioConstraint" destination="wAa-Q7-h3T" id="HhK-nB-o5M"/>
                                     <outlet property="dateLabel" destination="yBb-hC-cbs" id="mYY-nV-9gG"/>
                                     <outlet property="likesLabel" destination="Uk1-yi-Pcs" id="FXP-em-ZzL"/>
                                     <outlet property="nameLabel" destination="9hd-wh-jN8" id="tKl-y3-Mge"/>

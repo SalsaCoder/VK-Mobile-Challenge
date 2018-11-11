@@ -22,7 +22,8 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
     private var task: URLSessionDataTask?
 
-    @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cvVerticalAspectRatioConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cvHorizontalAspectRationConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionViewZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
 
@@ -90,16 +91,17 @@ extension NewsfeedTableViewCell {
         commentsLabel.text = viewModel.counters.comments
         likesLabel.text = viewModel.counters.likes
 
-        counterSeparator.isHidden = viewModel.photoUrls.count < 2
+        counterSeparator.isHidden = viewModel.photos.count < 2
 
-        pageControl.numberOfPages = viewModel.photoUrls.count
-        collectionViewManager.photoUrls = viewModel.photoUrls
+        pageControl.numberOfPages = viewModel.photos.count
+
+        collectionViewManager.photoUrls = viewModel.photos.compactMap({ $0.url })
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
 
-        pageControlHeightConstraint.constant = viewModel.photoUrls.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
+        pageControlHeightConstraint.constant = viewModel.photos.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
 
-        collectionViewZeroHeightConstraint.isActive = viewModel.photoUrls.count == 0
+        collectionViewZeroHeightConstraint.isActive = viewModel.photos.isEmpty
 
         collectionView.reloadData()
     }

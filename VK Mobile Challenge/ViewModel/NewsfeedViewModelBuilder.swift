@@ -30,12 +30,18 @@ final class NewsfeedViewModelBuilder {
             let name = "\(user.firstName) \(user.lastName)"
             let date = dateFormatter.string(from: Date(timeIntervalSince1970: item.date))
 
-            let photoUrls =  item.attachments?.compactMap({ (item) -> URL? in
+            let photos = item.attachments?.compactMap({ (item) -> NewsfeedViewModel.PhotoViewModel? in
                 guard let photoAttachment = item as? PhotoAttachment else {
                     return nil
                 }
 
-                return photoAttachment.photo.sizes.first(where: { $0.type == .r })?.url
+                guard let photoSize = photoAttachment.photo.sizes.first(where: { $0.type == .r }) else {
+                    return nil
+                }
+
+                return NewsfeedViewModel.PhotoViewModel(url: photoSize.url,
+                                                        width: photoSize.width,
+                                                        height: photoSize.height)
             })
 
             let counters = makeCountersViewModel(item: item)
@@ -44,7 +50,7 @@ final class NewsfeedViewModelBuilder {
                                               date: date,
                                               authorImageUrl: user.photo,
                                               text: item.text,
-                                              photoUrls: photoUrls ?? [],
+                                              photos: photos ?? [],
                                               counters: counters)
 
             viewModels.append(viewModel)

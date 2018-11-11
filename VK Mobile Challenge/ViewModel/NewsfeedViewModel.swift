@@ -16,10 +16,16 @@ struct NewsfeedViewModel {
         let views: String?
     }
 
+    struct PhotoViewModel {
+        let url: URL
+        let width: Int
+        let height: Int
+    }
+
     let name: String
     let date: String
     let authorImageUrl: URL
     let text: String
-    let photoUrls: [URL]
+    let photos: [PhotoViewModel]
     let counters: CountersViewModel
 }
