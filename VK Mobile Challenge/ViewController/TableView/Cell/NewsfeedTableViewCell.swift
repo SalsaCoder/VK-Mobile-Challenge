@@ -15,6 +15,12 @@ protocol NewsfeedTableViewCellDelegate: class {
 final class NewsfeedTableViewCell: UITableViewCell {
     private static let pageControlHeight: CGFloat = 39
 
+    /*
+     Hack: с ассетами случилась грусть,
+     tintColor в сториборде игнорировался.
+     Пришлось проставлять в коде
+    */
+
     weak var delegate: NewsfeedTableViewCellDelegate?
 
     static let reuseIdentifier = "NewsfeedTableViewCell"
@@ -27,6 +33,32 @@ final class NewsfeedTableViewCell: UITableViewCell {
     }()
 
     private var task: URLSessionDataTask?
+
+    @IBOutlet weak var viewsImageView: UIImageView! {
+        didSet {
+            viewsImageView.image = viewsImageView.image?.withRenderingMode(.alwaysTemplate)
+            viewsImageView.tintColor = UIColor(red: 0.66, green: 0.68, blue: 0.7, alpha: 1.0)
+        }
+    }
+    @IBOutlet weak var likesImageView: UIImageView! {
+        didSet {
+            likesImageView.image = likesImageView.image?.withRenderingMode(.alwaysTemplate)
+            likesImageView.tintColor = UIColor(red: 0.5, green: 0.55, blue: 0.6, alpha: 1.0)
+        }
+    }
+
+    @IBOutlet weak var repostImageView: UIImageView! {
+        didSet {
+            repostImageView.image = repostImageView.image?.withRenderingMode(.alwaysTemplate)
+            repostImageView.tintColor = UIColor(red: 0.5, green: 0.55, blue: 0.6, alpha: 1.0)
+        }
+    }
+    @IBOutlet weak var commentsImageView: UIImageView! {
+        didSet {
+            commentsImageView.image = commentsImageView.image?.withRenderingMode(.alwaysTemplate)
+            commentsImageView.tintColor = UIColor(red: 0.5, green: 0.55, blue: 0.6, alpha: 1.0)
+        }
+    }
 
     @IBOutlet weak var collectionViewZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!

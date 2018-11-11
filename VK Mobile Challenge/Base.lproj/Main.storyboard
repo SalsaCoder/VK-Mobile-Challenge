@@ -242,19 +242,23 @@
                                 <connections>
                                     <outlet property="collectionView" destination="LhU-tU-ch3" id="Qfw-LJ-1HV"/>
                                     <outlet property="collectionViewZeroHeightConstraint" destination="Lrn-ju-Apf" id="huY-eI-wUM"/>
+                                    <outlet property="commentsImageView" destination="cgA-2u-iVy" id="8JH-MV-D97"/>
                                     <outlet property="commentsLabel" destination="bMV-Ag-Sxr" id="gMX-1K-MIS"/>
                                     <outlet property="containerView" destination="yb8-V4-IIW" id="0Ro-zv-uT6"/>
                                     <outlet property="counterSeparator" destination="JL5-jY-KlJ" id="PX3-DE-C2T"/>
                                     <outlet property="dateLabel" destination="yBb-hC-cbs" id="mYY-nV-9gG"/>
+                                    <outlet property="likesImageView" destination="Q2g-sG-Q28" id="8AU-Ib-Tl1"/>
                                     <outlet property="likesLabel" destination="Uk1-yi-Pcs" id="FXP-em-ZzL"/>
                                     <outlet property="nameLabel" destination="9hd-wh-jN8" id="tKl-y3-Mge"/>
                                     <outlet property="pageControl" destination="dKE-Pw-q8H" id="YN5-LZ-ks5"/>
                                     <outlet property="pageControlHeightConstraint" destination="P79-2F-dNq" id="xXj-F5-bcY"/>
                                     <outlet property="profileImageView" destination="9oV-VO-h56" id="dj3-Vs-SKG"/>
+                                    <outlet property="repostImageView" destination="tdN-Qf-YLL" id="HYl-EJ-5e1"/>
                                     <outlet property="repostLabel" destination="oyc-04-wOk" id="I4D-dm-MoT"/>
                                     <outlet property="showMoreButton" destination="TqB-jx-gzJ" id="zIN-ZJ-fiV"/>
                                     <outlet property="textHeightConstraint" destination="hcd-7P-xAo" id="Dv8-zC-4xN"/>
                                     <outlet property="textView" destination="OhV-Mq-slQ" id="k3x-e9-aNY"/>
+                                    <outlet property="viewsImageView" destination="XkA-b9-eqx" id="1IH-0S-On4"/>
                                     <outlet property="viewsLabel" destination="tr8-wY-0Kp" id="CRx-mM-EOW"/>
                                 </connections>
                             </tableViewCell>
