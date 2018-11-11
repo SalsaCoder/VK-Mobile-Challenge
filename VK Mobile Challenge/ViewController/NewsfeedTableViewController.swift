@@ -47,13 +47,13 @@ final class NewsfeedTableViewController: UITableViewController {
 
 extension NewsfeedTableViewController: NewsfeedServiceDelegate {
     func newsfeedService(_ service: NewsfeedService, didLoad newsfeed: Newsfeed) {
-        let viewModels = viewModelBuilder.buildViewModels(from: newsfeed)
-        tableViewManager.viewModels.append(contentsOf: viewModels)
-
-        lastNextFrom = newsfeed.nextFrom
-        isLoading = false
-        
         DispatchQueue.main.async {
+            let viewModels = self.viewModelBuilder.buildViewModels(from: newsfeed, viewWidth: self.view.bounds.width)
+            self.tableViewManager.viewModels.append(contentsOf: viewModels)
+
+            self.lastNextFrom = newsfeed.nextFrom
+            self.isLoading = false
+
             self.tableViewManager.showLoadingIndicator = false
             self.tableView.reloadData()
         }

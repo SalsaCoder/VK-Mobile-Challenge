@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol NewsfeedTableViewCellDelegate: class {
+    func newsfeedTableViewCellDidTapShowMoreButton(_ cell: NewsfeedTableViewCell)
+}
+
 final class NewsfeedTableViewCell: UITableViewCell {
     private static let pageControlHeight: CGFloat = 39
-    private let maximumNumberOfLines: CGFloat = 6
+
+    weak var delegate: NewsfeedTableViewCellDelegate?
 
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
@@ -23,11 +28,9 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
     private var task: URLSessionDataTask?
 
-    @IBOutlet weak var cvVerticalAspectRatioConstraint: NSLayoutConstraint!
-    @IBOutlet weak var cvHorizontalAspectRationConstraint: NSLayoutConstraint!
     @IBOutlet weak var collectionViewZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var textHeightConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var showMoreButton: UIButton!
     @IBOutlet weak var profileImageView: UIImageView! {
@@ -75,7 +78,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
     }
 
     @IBAction func tapShowMoreButton(_ sender: Any) {
-
+        delegate?.newsfeedTableViewCellDidTapShowMoreButton(self)
     }
 
     override func awakeFromNib() {
@@ -83,7 +86,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
         if let lineHeight = textView.font?.lineHeight {
 //             Резервируем строки для кнопки "Показать полностью"
-            textHeightConstraint.constant = lineHeight * (maximumNumberOfLines + 2)
+            textHeightConstraint.constant = lineHeight * CGFloat((Constants.UI.maximumNumberOfLines + 2))
             showMoreButton.isHidden = true
         }
     }
@@ -108,18 +111,17 @@ extension NewsfeedTableViewCell {
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
 
-        if let font = textView.font {
-            let textHeight = font.sizeOf(string: viewModel.text,
-                                         constrainedTo: textView.bounds.width).height
-
-            if textHeight < font.lineHeight * maximumNumberOfLines {
-                showMoreButton.isHidden = true
-                textView.textContainerInset = .zero
-            } else {
-                showMoreButton.isHidden = false
-                textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: showMoreButton.bounds.height, right: 0)
-            }
+        if viewModel.shouldTrimmText {
+            showMoreButton.isHidden = false
+            textView.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: showMoreButton.bounds.height, right: 0)
+            textHeightConstraint.isActive = true
+        } else {
+            showMoreButton.isHidden = true
+            textView.textContainerInset = .zero
+            textHeightConstraint.isActive = false
         }
+
+        setNeedsUpdateConstraints()
     }
 
     func configureCollectionView(with photos: [NewsfeedViewModel.PhotoViewModel]) {
@@ -129,15 +131,6 @@ extension NewsfeedTableViewCell {
 
         pageControlHeightConstraint.constant = photos.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
         collectionViewZeroHeightConstraint.isActive = photos.isEmpty
-
-        // Если одна фотка и она вертикальная,
-        // настраиваем констрейнты для вертикального отображения
-        if photos.count == 1 {
-            let photo = photos.first!
-            if photo.width < photo.height {
-                configureCollectionViewForVertical()
-            }
-        }
 
         collectionView.reloadData()
     }
@@ -153,26 +146,5 @@ extension NewsfeedTableViewCell {
 extension NewsfeedTableViewCell: NewsFeedCollectionViewManagerDelegate {
     func newsFeedCollectionViewManager(_ collectionViewManager: NewsFeedCollectionViewManager, didShowPhotoAt index: Int) {
         pageControl.currentPage = index
-    }
-}
-
-private extension NewsfeedTableViewCell {
-    func configureCollectionViewForVertical() {
-        cvHorizontalAspectRationConstraint.isActive = false
-        cvVerticalAspectRatioConstraint.isActive = true
-    }
-
-    func configureCollectionViewForHorizontal() {
-        cvHorizontalAspectRationConstraint.isActive = true
-        cvVerticalAspectRatioConstraint.isActive = false
-    }
-}
-
-private extension UIFont {
-    func sizeOf(string: String, constrainedTo width: CGFloat) -> CGSize {
-        return NSString(string: string).boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude),
-                                                     options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                                     attributes: [.font: self],
-                                                     context: nil).size
     }
 }

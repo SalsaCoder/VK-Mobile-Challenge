@@ -26,6 +26,7 @@ struct NewsfeedViewModel {
     let date: String
     let authorImageUrl: URL
     let text: String
+    var shouldTrimmText: Bool
     let photos: [PhotoViewModel]
     let counters: CountersViewModel
 }

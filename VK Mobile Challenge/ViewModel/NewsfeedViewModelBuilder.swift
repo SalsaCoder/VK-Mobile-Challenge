@@ -17,7 +17,7 @@ final class NewsfeedViewModelBuilder {
         return dateFormatter
     }()
 
-    func buildViewModels(from newsfeed: Newsfeed) -> [NewsfeedViewModel] {
+    func buildViewModels(from newsfeed: Newsfeed, viewWidth: CGFloat) -> [NewsfeedViewModel] {
         var viewModels = [NewsfeedViewModel]()
 
         let originalItems = newsfeed.items.filter({ $0.isRepost == false })
@@ -46,10 +46,17 @@ final class NewsfeedViewModelBuilder {
 
             let counters = makeCountersViewModel(item: item)
 
+            let font = UIFont.systemFont(ofSize: 15)
+            let textOffset: CGFloat = 40
+
+            let textHeight = font.sizeOf(string: item.text, constrainedTo: viewWidth - textOffset).height
+            let shouldTrimmText = font.lineHeight * CGFloat(Constants.UI.maximumNumberOfLines) < textHeight
+
             let viewModel = NewsfeedViewModel(name: name,
                                               date: date,
                                               authorImageUrl: user.photo,
                                               text: item.text,
+                                              shouldTrimmText: shouldTrimmText,
                                               photos: photos ?? [],
                                               counters: counters)
 
@@ -70,5 +77,14 @@ final class NewsfeedViewModelBuilder {
                                                    comments: comments > 0 ? "\(comments)" : nil,
                                                    reposts: reposts > 0 ? "\(reposts)" : nil,
                                                    views: views > 0 ? "\(views)" : nil)
+    }
+}
+
+private extension UIFont {
+    func sizeOf(string: String, constrainedTo width: CGFloat) -> CGSize {
+        return NSString(string: string).boundingRect(with: CGSize(width: width, height: .greatestFiniteMagnitude),
+                                                     options: NSStringDrawingOptions.usesLineFragmentOrigin,
+                                                     attributes: [.font: self],
+                                                     context: nil).size
     }
 }

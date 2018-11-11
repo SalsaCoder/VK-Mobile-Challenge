@@ -33,4 +33,8 @@ enum Constants {
             return gradientLayer
         }()
     }
+
+    enum UI {
+        static let maximumNumberOfLines = 6
+    }
 }

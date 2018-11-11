@@ -53,6 +53,8 @@ extension NewsfeedTableViewManager: UITableViewDelegate, UITableViewDataSource {
         if let cell = cell as? NewsfeedTableViewCell {
             let viewModel = viewModels[indexPath.row]
             cell.configure(with: viewModel)
+
+            cell.delegate = self
         }
 
         return cell
@@ -72,5 +74,17 @@ extension NewsfeedTableViewManager: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+}
+
+extension NewsfeedTableViewManager: NewsfeedTableViewCellDelegate {
+    func newsfeedTableViewCellDidTapShowMoreButton(_ cell: NewsfeedTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+
+        viewModels[indexPath.row].shouldTrimmText = false
+
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
 }
