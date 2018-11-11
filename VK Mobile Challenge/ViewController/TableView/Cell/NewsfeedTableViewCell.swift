@@ -77,6 +77,18 @@ final class NewsfeedTableViewCell: UITableViewCell {
         task?.cancel()
         task = nil
         profileImageView.image = nil
+
+        configureCollectionViewForHorizontal()
+    }
+
+    private func configureCollectionViewForVertical() {
+        cvHorizontalAspectRationConstraint.isActive = false
+        cvVerticalAspectRatioConstraint.isActive = true
+    }
+
+    private func configureCollectionViewForHorizontal() {
+        cvHorizontalAspectRationConstraint.isActive = true
+        cvVerticalAspectRatioConstraint.isActive = false
     }
 }
 
@@ -92,18 +104,24 @@ extension NewsfeedTableViewCell {
         likesLabel.text = viewModel.counters.likes
 
         counterSeparator.isHidden = viewModel.photos.count < 2
-
         pageControl.numberOfPages = viewModel.photos.count
-
         collectionViewManager.photoUrls = viewModel.photos.compactMap({ $0.url })
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
-
         pageControlHeightConstraint.constant = viewModel.photos.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
-
         collectionViewZeroHeightConstraint.isActive = viewModel.photos.isEmpty
 
         collectionView.reloadData()
+        task = profileImageView.setImage(with: viewModel.authorImageUrl)
+
+        // Если одна фотка и она вертикальная,
+        // настраиваем констрейнты для вертикального отображения
+        if viewModel.photos.count == 1 {
+            let photo = viewModel.photos.first!
+            if photo.width < photo.height {
+                configureCollectionViewForVertical()
+            }
+        }
     }
 }
 
