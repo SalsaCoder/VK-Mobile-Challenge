@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>StringKey</key>
+	<key>newsfeed.totalCount</key>
 	<dict>
-		<key>newsfeed.totalCount</key>
+		<key>NSStringLocalizedFormatKey</key>
 		<string>%#@count@</string>
 		<key>count</key>
 		<dict>
