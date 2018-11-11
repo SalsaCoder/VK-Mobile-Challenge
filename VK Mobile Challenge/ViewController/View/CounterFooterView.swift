@@ -20,7 +20,35 @@ final class CounterFooterView: UIView {
 
     var postCount: Int = 0 {
         didSet {
-            label.text = "\(postCount) записей"
+            let formatString : String = NSLocalizedString("newsfeed.totalCount", comment: "")
+            let resultString : String = String.localizedStringWithFormat(formatString, postCount)
+
+            label.text = resultString
         }
+    }
+
+    private var didSetupConstraints = false
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        addSubview(label)
+        setNeedsUpdateConstraints()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func updateConstraints() {
+        if !didSetupConstraints {
+
+            label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+            label.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+
+            didSetupConstraints = true
+        }
+
+        super.updateConstraints()
     }
 }
