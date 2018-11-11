@@ -52,4 +52,15 @@ extension NewsFeedCollectionViewManager: UICollectionViewDelegateFlowLayout {
 
         return size
     }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2),
+                             y: (scrollView.frame.height / 2))
+
+        guard let indexPath = (scrollView as? UICollectionView)?.indexPathForItem(at: center) else {
+            return
+        }
+
+        delegate?.newsFeedCollectionViewManager(self, didShowPhotoAt: indexPath.row)
+    }
 }

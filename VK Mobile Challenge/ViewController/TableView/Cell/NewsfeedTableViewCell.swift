@@ -11,7 +11,13 @@ import UIKit
 final class NewsfeedTableViewCell: UITableViewCell {
     static let reuseIdentifier = "NewsfeedTableViewCell"
 
-    private let collectionViewManager = NewsFeedCollectionViewManager()
+    private lazy var collectionViewManager: NewsFeedCollectionViewManager = {
+        let manager = NewsFeedCollectionViewManager()
+        manager.delegate = self
+
+        return manager
+    }()
+
     private var task: URLSessionDataTask?
 
     @IBOutlet weak var profileImageView: UIImageView! {
@@ -47,6 +53,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var pageControl: UIPageControl! {
         didSet {
             pageControl.hidesForSinglePage = true
+            pageControl.isUserInteractionEnabled = false
         }
     }
 
@@ -56,7 +63,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
             collectionView.dataSource = collectionViewManager
         }
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
 
@@ -85,5 +92,11 @@ extension NewsfeedTableViewCell {
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
 
         collectionView.reloadData()
+    }
+}
+
+extension NewsfeedTableViewCell: NewsFeedCollectionViewManagerDelegate {
+    func newsFeedCollectionViewManager(_ collectionViewManager: NewsFeedCollectionViewManager, didShowPhotoAt index: Int) {
+        pageControl.currentPage = index
     }
 }
