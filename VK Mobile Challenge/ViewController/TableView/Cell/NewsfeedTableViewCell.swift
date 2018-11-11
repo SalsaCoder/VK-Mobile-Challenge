@@ -23,7 +23,7 @@ final class NewsfeedTableViewCell: UITableViewCell {
     private var task: URLSessionDataTask?
 
     @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionViewZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
 
     @IBOutlet weak var profileImageView: UIImageView! {
@@ -98,12 +98,8 @@ extension NewsfeedTableViewCell {
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
 
         pageControlHeightConstraint.constant = viewModel.photoUrls.count > 1 ? NewsfeedTableViewCell.pageControlHeight : 0
-        collectionViewHeightConstraint.constant = viewModel.photoUrls.count > 0 ? 150 : 0
 
-        if let lineHeight = textView.font?.lineHeight {
-            textView.text += "\nПоказать полностью..."
-            textViewHeightConstraint.constant = lineHeight * 7
-        }
+        collectionViewZeroHeightConstraint.isActive = viewModel.photoUrls.count == 0
 
         collectionView.reloadData()
     }

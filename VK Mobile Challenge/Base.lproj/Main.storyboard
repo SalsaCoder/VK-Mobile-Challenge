@@ -36,15 +36,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsfeedTableViewCell" rowHeight="442" id="ZaA-1V-bTF" customClass="NewsfeedTableViewCell" customModule="VK_Mobile_Challenge" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="442"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsfeedTableViewCell" rowHeight="600" id="ZaA-1V-bTF" customClass="NewsfeedTableViewCell" customModule="VK_Mobile_Challenge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="600"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZaA-1V-bTF" id="Zyv-cC-kpX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="442"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yb8-V4-IIW">
-                                            <rect key="frame" x="8" y="6" width="359" height="430"/>
+                                            <rect key="frame" x="8" y="6" width="359" height="588"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9oV-VO-h56">
                                                     <rect key="frame" x="12" y="12" width="36" height="36"/>
@@ -78,7 +78,7 @@
                                                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 </textView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPY-YG-tuI">
-                                                    <rect key="frame" x="0.0" y="386" width="359" height="44"/>
+                                                    <rect key="frame" x="0.0" y="544" width="359" height="44"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JL5-jY-KlJ">
                                                             <rect key="frame" x="12" y="0.0" width="335" height="1"/>
@@ -156,10 +156,11 @@
                                                     </constraints>
                                                 </view>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LhU-tU-ch3">
-                                                    <rect key="frame" x="0.0" y="187.5" width="359" height="159.5"/>
+                                                    <rect key="frame" x="0.0" y="236" width="359" height="269"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="159.5" id="GdK-Hf-vsI"/>
+                                                        <constraint firstAttribute="height" id="Lrn-ju-Apf"/>
+                                                        <constraint firstAttribute="width" secondItem="LhU-tU-ch3" secondAttribute="height" multiplier="4:3" priority="750" id="vku-gq-dkT"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="4" minimumInteritemSpacing="4" id="pYD-CZ-0pH">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -177,9 +178,14 @@
                                                             </view>
                                                         </collectionViewCell>
                                                     </cells>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="Lrn-ju-Apf"/>
+                                                        </mask>
+                                                    </variation>
                                                 </collectionView>
                                                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="dKE-Pw-q8H">
-                                                    <rect key="frame" x="160" y="347" width="39" height="39"/>
+                                                    <rect key="frame" x="160" y="505" width="39" height="39"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="P79-2F-dNq"/>
                                                     </constraints>
@@ -221,7 +227,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="collectionView" destination="LhU-tU-ch3" id="Qfw-LJ-1HV"/>
-                                    <outlet property="collectionViewHeightConstraint" destination="GdK-Hf-vsI" id="Xje-YG-RwI"/>
+                                    <outlet property="collectionViewZeroHeightConstraint" destination="Lrn-ju-Apf" id="huY-eI-wUM"/>
                                     <outlet property="commentsLabel" destination="bMV-Ag-Sxr" id="gMX-1K-MIS"/>
                                     <outlet property="containerView" destination="yb8-V4-IIW" id="0Ro-zv-uT6"/>
                                     <outlet property="counterSeparator" destination="JL5-jY-KlJ" id="PX3-DE-C2T"/>
