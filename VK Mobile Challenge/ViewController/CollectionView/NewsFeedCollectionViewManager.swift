@@ -8,7 +8,12 @@
 
 import UIKit
 
+protocol NewsFeedCollectionViewManagerDelegate: class {
+    func newsFeedCollectionViewManager(_ collectionViewManager: NewsFeedCollectionViewManager, didShowPhotoAt index: Int)
+}
+
 final class NewsFeedCollectionViewManager: NSObject {
+    weak var delegate: NewsFeedCollectionViewManagerDelegate?
     var imageUrls: [URL] = []
 }
 

@@ -15,7 +15,7 @@ final class NewsfeedCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
 
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
 
         return imageView
@@ -44,15 +44,17 @@ final class NewsfeedCollectionViewCell: UICollectionViewCell {
         super.updateConstraints()
     }
 
-    func configure(with url: URL) {
-        task = imageView.setImage(with: url)
-    }
-
     override func prepareForReuse() {
         super.prepareForReuse()
 
         task?.cancel()
         task = nil
         imageView.image = nil
+    }
+}
+
+extension NewsfeedCollectionViewCell {
+    func configure(with url: URL) {
+        task = imageView.setImage(with: url)
     }
 }

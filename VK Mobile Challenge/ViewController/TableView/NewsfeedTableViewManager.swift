@@ -8,9 +8,11 @@
 
 import UIKit
 
-final class NewsfeedTableViewManager: NSObject, UITableViewDelegate, UITableViewDataSource {
+final class NewsfeedTableViewManager: NSObject {
     var viewModels = [NewsfeedViewModel]()
+}
 
+extension NewsfeedTableViewManager: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModels.count
     }

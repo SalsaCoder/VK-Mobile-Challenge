@@ -15,19 +15,42 @@ final class NewsfeedTableViewCell: UITableViewCell {
 
     var task: URLSessionDataTask?
 
-    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView! {
+        didSet {
+            profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
+            profileImageView.layer.masksToBounds = true
+        }
+    }
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var showMoreButton: UIButton!
-    @IBOutlet weak var containerView: UIView!
+
+    @IBOutlet weak var textView: UITextView! {
+        didSet {
+            textView.textContainerInset = .zero
+            textView.textContainer.lineFragmentPadding = 0
+        }
+    }
+
+    @IBOutlet weak var containerView: UIView! {
+        didSet {
+            containerView.layer.cornerRadius = 10
+            containerView.layer.masksToBounds = true
+        }
+    }
 
     @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var repostLabel: UILabel!
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var counterSeparator: UIView!
-    @IBOutlet weak var pageControl: UIPageControl!
+
+    @IBOutlet weak var pageControl: UIPageControl! {
+        didSet {
+            pageControl.hidesForSinglePage = true
+        }
+    }
+
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.delegate = collectionViewManager
@@ -35,24 +58,16 @@ final class NewsfeedTableViewCell: UITableViewCell {
         }
     }
 
-    @IBAction func tapShowMoreButton(_ sender: UIButton) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        task?.cancel()
+        task = nil
+        profileImageView.image = nil
     }
+}
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
-        textView.textContainerInset = .zero
-        textView.textContainer.lineFragmentPadding = 0
-
-        containerView.layer.cornerRadius = 10
-        containerView.layer.masksToBounds = true
-
-        profileImageView.layer.cornerRadius = profileImageView.bounds.height / 2
-        profileImageView.layer.masksToBounds = true
-
-        pageControl.hidesForSinglePage = true
-    }
-
+extension NewsfeedTableViewCell {
     func configure(with viewModel: NewsfeedViewModel) {
         nameLabel.text = viewModel.name
         dateLabel.text = viewModel.date
@@ -63,19 +78,13 @@ final class NewsfeedTableViewCell: UITableViewCell {
         commentsLabel.text = viewModel.commentsCount > 0 ? "\(viewModel.commentsCount)" : nil
         likesLabel.text = viewModel.likeCounts > 0 ? "\(viewModel.likeCounts)" : nil
 
+        counterSeparator.isHidden = viewModel.photoUrls.count < 2
+
         pageControl.numberOfPages = viewModel.photoUrls.count
         collectionViewManager.imageUrls = viewModel.photoUrls
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
 
         collectionView.reloadData()
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-
-        task?.cancel()
-        task = nil
-        profileImageView.image = nil
     }
 }
