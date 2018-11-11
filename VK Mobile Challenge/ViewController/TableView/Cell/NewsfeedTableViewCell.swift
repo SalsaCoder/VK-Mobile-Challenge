@@ -49,7 +49,8 @@ final class NewsfeedTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var counterSeparator: UIView!
-
+    @IBOutlet weak var pageControlHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var pageControl: UIPageControl! {
         didSet {
             pageControl.hidesForSinglePage = true
@@ -90,6 +91,8 @@ extension NewsfeedTableViewCell {
         collectionViewManager.imageUrls = viewModel.photoUrls
 
         task = profileImageView.setImage(with: viewModel.authorImageUrl)
+
+        pageControlHeightConstraint.constant = viewModel.photoUrls.count > 1 ? 39 : 0
 
         collectionView.reloadData()
     }

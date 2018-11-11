@@ -226,6 +226,7 @@
                                     <outlet property="likesLabel" destination="Uk1-yi-Pcs" id="FXP-em-ZzL"/>
                                     <outlet property="nameLabel" destination="9hd-wh-jN8" id="tKl-y3-Mge"/>
                                     <outlet property="pageControl" destination="dKE-Pw-q8H" id="YN5-LZ-ks5"/>
+                                    <outlet property="pageControlHeightConstraint" destination="P79-2F-dNq" id="xXj-F5-bcY"/>
                                     <outlet property="profileImageView" destination="9oV-VO-h56" id="dj3-Vs-SKG"/>
                                     <outlet property="repostLabel" destination="oyc-04-wOk" id="I4D-dm-MoT"/>
                                     <outlet property="textView" destination="OhV-Mq-slQ" id="k3x-e9-aNY"/>
